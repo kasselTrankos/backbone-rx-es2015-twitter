@@ -3,4 +3,4 @@ var gulp = require('gulp'),
   browserify = require('./tasks/browserify')
   livereload = require('./tasks/livereload');
 
-gulp.task('default', ['watch', 'copy', 'javascript']);
+gulp.task('default', ['watch', 'copy']);

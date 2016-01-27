@@ -21,25 +21,27 @@
     "gulp-livereload": "^3.8.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
-    "vinyl-transform": "^1.0.0"
+    "vinyl-transform": "^1.0.0",
+    "watchify": "^3.7.0"
   },
   "browserify": {
-    "transform": [ "browserify-shim" ]
+    "transform": [
+      "browserify-shim"
+    ]
   },
   "browser": {
-    "jquery"    :  "bower_components/jquery/dist/jquery.js",
-    "underscore" :  "bower_components/underscore/underscore.js",
-    "backbone"    : "./bower_components/backbone/backbone.js"
+    "jquery": "bower_components/jquery/dist/jquery.js",
+    "underscore": "bower_components/underscore/underscore.js",
+    "backbone": "./bower_components/backbone/backbone.js"
   },
   "browserify-shim": {
     "backbone": {
       "exports": "backbone"
     },
     "angular-resource": {
-      "depends": ["./bower_components/angular/angular.js:angular"]
+      "depends": [
+        "./bower_components/angular/angular.js:angular"
+      ]
     }
-}
-
-
-
+  }
 }

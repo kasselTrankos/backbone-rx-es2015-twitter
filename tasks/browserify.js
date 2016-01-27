@@ -4,7 +4,7 @@ var gulp = require('gulp'),
   source = require('vinyl-source-stream'),
   transform = require('vinyl-transform');
 
-gulp.task('javascript', function () {
+gulp.task('build-js', function () {
   return browserify('src/main.js')
     .bundle()
     .pipe(source('js/script.js'))

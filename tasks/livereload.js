@@ -1,8 +1,6 @@
 var gulp = require('gulp'),
-  browserify = require('./browserify'),
-  livereload = require('gulp-livereload');
+  browserify = require('./browserify');
 
 gulp.task('watch', function() {
-  livereload.listen();
-  gulp.watch('src/*', ['browserify']);
+  gulp.watch('src/*', ['build-js']);
 });

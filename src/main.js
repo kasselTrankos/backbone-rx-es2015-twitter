@@ -1,7 +1,7 @@
 'use strict';
 var backbone = require('backbone')
 // require another module relative to current module
-var foo = ['ab', 'bc'];
+var foo = ['ab', 'bc', 'nmk the who molo to say it;'];
 /*
 // require a vanilla node module managed by npm
 var _ = require('underscore');
