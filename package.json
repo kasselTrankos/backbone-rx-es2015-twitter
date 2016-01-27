@@ -13,8 +13,33 @@
     "gulp": "^3.9.0"
   },
   "devDependencies": {
+    "browserify": "^13.0.0",
+    "browserify-shim": "^3.8.12",
+    "gulp-bower": "0.0.13",
     "gulp-browserify": "^0.5.1",
     "gulp-eslint": "^1.1.1",
-    "gulp-livereload": "^3.8.1"
-  }
+    "gulp-livereload": "^3.8.1",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "vinyl-transform": "^1.0.0"
+  },
+  "browserify": {
+    "transform": [ "browserify-shim" ]
+  },
+  "browser": {
+    "jquery"    :  "bower_components/jquery/dist/jquery.js",
+    "underscore" :  "bower_components/underscore/underscore.js",
+    "backbone"    : "./bower_components/backbone/backbone.js"
+  },
+  "browserify-shim": {
+    "backbone": {
+      "exports": "backbone"
+    },
+    "angular-resource": {
+      "depends": ["./bower_components/angular/angular.js:angular"]
+    }
+}
+
+
+
 }

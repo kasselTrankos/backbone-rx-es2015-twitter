@@ -5,7 +5,9 @@ bases: {
  },
  paths: {
   scripts: ['src/**/*.js', '!scripts/libs/**/*.js'],
-  libs: ['scripts/libs/jquery/dist/jquery.js', 'scripts/libs/underscore/underscore.js', 'scripts/backbone/backbone.js'],
+  libs: ['bower_components/jquery/dist/jquery.js',
+    'bower_components/underscore/underscore.js',
+    'bower_components/backbone/backbone.js'],
   styles: ['styles/**/*.css'],
   html: ['src/index.html', '404.html'],
   images: ['images/**/*.png'],

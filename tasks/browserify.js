@@ -1,13 +1,12 @@
-var gulp = require('gulp');
-var browserify = require('gulp-browserify');
+var gulp = require('gulp'),
+  config = require('./config'),
+  browserify = require('browserify'),
+  source = require('vinyl-source-stream'),
+  transform = require('vinyl-transform');
 
-// Basic usage
-gulp.task('browserify', function() {
-  // Single entry point to browserify
-  gulp.src('src/main.js')
-    .pipe(browserify({
-      insertGlobals : true,
-      debug : !gulp.env.production
-    }))
-  .pipe(gulp.dest('./public/js'))
+gulp.task('javascript', function () {
+  return browserify('src/main.js')
+    .bundle()
+    .pipe(source('js/script.js'))
+    .pipe(gulp.dest('./public'));
 });
