@@ -34,13 +34,13 @@
   "browser": {
     "jquery": "./bower_components/jquery/dist/jquery.js",
     "underscore": "./bower_components/underscore/underscore.js",
-    "backbone": "./bower_components/backbone/backbone.js"
+    "Backbone": "./bower_components/backbone/backbone.js"
   },
   "browserify-shim": {
     "underscore": "_",
     "jquery": "$",
-    "backbone": {
-      "exports": "backbone",
+    "Backbone": {
+      "exports": "Backbone",
       "depends": [
         "underscore",
         "jquery"
