@@ -17,6 +17,7 @@
     "browserify-shim": "^3.8.12",
     "gulp-bower": "0.0.13",
     "gulp-browserify": "^0.5.1",
+    "gulp-connect": "^2.3.1",
     "gulp-eslint": "^1.1.1",
     "gulp-livereload": "^3.8.1",
     "vinyl-buffer": "^1.0.0",
@@ -30,18 +31,16 @@
     ]
   },
   "browser": {
-    "jquery": "bower_components/jquery/dist/jquery.js",
-    "underscore": "bower_components/underscore/underscore.js",
+    "jquery": "/ower_components/jquery/dist/jquery.js",
+    "underscore": "./bower_components/underscore/underscore.js",
     "backbone": "./bower_components/backbone/backbone.js"
   },
   "browserify-shim": {
+    "underscore":"_",
+    "jquery":"$",
     "backbone": {
-      "exports": "backbone"
-    },
-    "angular-resource": {
-      "depends": [
-        "./bower_components/angular/angular.js:angular"
-      ]
+      "exports": "backbone",
+      "depends":["underscore", "jquery"]
     }
   }
 }

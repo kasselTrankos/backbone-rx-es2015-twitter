@@ -1,5 +1,6 @@
 var gulp = require('gulp'),
   config = require('./config'),
+  connect = require('gulp-connect'),
   browserify = require('browserify'),
   source = require('vinyl-source-stream'),
   transform = require('vinyl-transform');
@@ -8,5 +9,6 @@ gulp.task('build-js', function () {
   return browserify('src/main.js')
     .bundle()
     .pipe(source('js/script.js'))
-    .pipe(gulp.dest('./public'));
+    .pipe(gulp.dest('./public'))
+    .pipe(connect.reload());
 });
