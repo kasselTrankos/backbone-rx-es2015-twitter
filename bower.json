@@ -1,0 +1,22 @@
+{
+  "name": "twitter",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "kasselTrankos <alvaro.touzon@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/kasselTrankos/backbone-stream-twitter",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone": "~1.2.3",
+    "underscore": "~1.8.3"
+  }
+}
