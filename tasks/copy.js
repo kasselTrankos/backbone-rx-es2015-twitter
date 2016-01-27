@@ -1,7 +1,9 @@
 var gulp = require('gulp'),
-  config = require('./config');
+  config = require('./config'),
+  connect = require('gulp-connect');
+  
 gulp.task('copy', function(){
-  //html
   gulp.src(config.paths.html)
-    .pipe(gulp.dest(config.bases.public));
+    .pipe(gulp.dest(config.bases.public))
+    .pipe(connect.reload());;
 });
