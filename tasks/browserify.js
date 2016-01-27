@@ -6,9 +6,9 @@ var gulp = require('gulp'),
   transform = require('vinyl-transform');
 
 gulp.task('build-js', function () {
-  return browserify('src/main.js')
+  return browserify(config.paths.js.input)
     .bundle()
-    .pipe(source('js/script.js'))
-    .pipe(gulp.dest('./public'))
+    .pipe(source(config.paths.js.name))
+    .pipe(gulp.dest(config.paths.js.output))
     .pipe(connect.reload());
 });
