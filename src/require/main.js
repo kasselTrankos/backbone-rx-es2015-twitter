@@ -5,8 +5,9 @@
   requirejs.config({
     enforceDefine: false,
     waitSeconds: 7,
-    baseUrl: '/app',
+    baseUrl: '/require',
     paths: {
+      'virtual-dom':'virtual-dom',
       backbone: '../../bower_components/backbone/backbone',
       'bootstrap-sass': '../../bower_components/bootstrap-sass/assets/javascripts/bootstrap',
       jquery: '../../bower_components/jquery/dist/jquery',
@@ -28,6 +29,7 @@
     ]
   });
   require(['app'], function (app) {
+    console.log(app);
     // initialisation code defined within app.js
     app.init();
   });
