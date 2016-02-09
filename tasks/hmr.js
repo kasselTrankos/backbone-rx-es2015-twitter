@@ -2,7 +2,7 @@ var gulp = require('gulp'),
   path = require('path'),
   colors = require('colors'),
   socketio = require('socket.io');
-var PORT = process.env.PORT || 3002;
+var PORT = process.env.SOCKET || 3002;
 function replaceAll(str, target, replacement) {
   return str.split(target).join(replacement);
 }
