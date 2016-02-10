@@ -1,5 +1,5 @@
-define(['jquery' ,'backbone', 'virtual-dom/vnode/vnode', 'virtual-dom/vnode/vtext'],
-  function($, Backbone, VNode, VText){
+define(['jquery' ,'backbone', 'virtual-dom/vnode/vnode', 'virtual-dom/vnode/vtext', 'virtual-dom/vdom/create-element'],
+  function($, Backbone, VNode, VText, createRootNode){
   var homeView = Backbone.View.extend({
 
     tagName: 'div',

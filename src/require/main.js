@@ -5,7 +5,10 @@
   requirejs.config({
     enforceDefine: false,
     waitSeconds: 7,
+    appDir: './',
     baseUrl: './require',
+    dir: './js',
+    packages: ['virtual-dom'],
     paths: {
       'virtual-dom':'virtual-dom',
       backbone: 'vendors/backbone-amd/backbone',
@@ -22,10 +25,7 @@
          'deps': ['jquery', 'underscore'],
          'exports': 'Backbone'
        }
-    },
-    packages: [
-
-    ]
+    }
   });
   require(['app'], function (app) {
     console.log(app);

@@ -24,6 +24,7 @@
     "browser-sync": "^2.11.1",
     "browserify": "^13.0.0",
     "browserify-shim": "^3.8.12",
+    "cajon": "^0.2.12",
     "colors": "^1.1.2",
     "express": "^4.13.4",
     "foreman": "^1.4.1",
