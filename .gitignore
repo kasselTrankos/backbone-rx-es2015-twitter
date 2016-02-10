@@ -1,3 +1,5 @@
 node_modules
 bower_components
 npm-debug.log
+src/reckquire/virtual-dom
+src/require/vendors

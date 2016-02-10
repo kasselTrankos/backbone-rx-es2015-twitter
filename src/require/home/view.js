@@ -1,4 +1,5 @@
-define(['$' ,'backbone', 'virtual-dom'], function($, Backbone, virtualDom){
+define(['jquery' ,'backbone', 'virtual-dom/vnode/vnode', 'virtual-dom/vnode/vtext'],
+  function($, Backbone, VNode, VText){
   var homeView = Backbone.View.extend({
 
     tagName: 'div',
@@ -16,7 +17,7 @@ define(['$' ,'backbone', 'virtual-dom'], function($, Backbone, virtualDom){
       var count = 0;      // We need some app data. Here we just store a count.
 
       console.log('render it please');
-      var form = new virtualDom.VNode('form', {
+      var form = new VNode('form', {
         action: '/account',
         method:'POST',
         className:'row'
@@ -24,7 +25,7 @@ define(['$' ,'backbone', 'virtual-dom'], function($, Backbone, virtualDom){
       var node =  new VNode('p', {
           className: "greeting"
       }, [
-          new virtualDom.VText("Hello " + String('vera esta encasa!!!'))
+          new VText("Hello " + String('vera esta encasa!!!'))
       ]);
       this.$el.append(createRootNode(node));
 

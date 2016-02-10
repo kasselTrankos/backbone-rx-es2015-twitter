@@ -5,17 +5,16 @@
   requirejs.config({
     enforceDefine: false,
     waitSeconds: 7,
-    baseUrl: '/require',
+    baseUrl: './require',
     paths: {
       'virtual-dom':'virtual-dom',
-      backbone: '../../bower_components/backbone/backbone',
-      'bootstrap-sass': '../../bower_components/bootstrap-sass/assets/javascripts/bootstrap',
-      jquery: '../../bower_components/jquery/dist/jquery',
-      requirejs: '../../bower_components/requirejs/require',
-      'socketio': '../../bower_components/socket.io-client/socket.io',
-      underscore: '../../bower_components/underscore/underscore'
+      backbone: 'vendors/backbone-amd/backbone',
+      'jquery': 'vendors/jquery/jquery',
+      'socketio': 'vendors/socket.io-client/socket.io',
+      underscore: 'vendors/underscore/underscore'
     },
     shim: {
+
       'underscore': {
          'exports': '_'
        },
