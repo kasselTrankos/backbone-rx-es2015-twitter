@@ -8,7 +8,7 @@ var gulp  =require('gulp'),
     proxyOptions.route = '/apitwitter';
     //var proxy = proxyMiddleware('/apitwitter', {target: 'http://localhost:3040'});
 
-    browserSync({
+    browserSync.init({
   		open: false,
   		notify: false,
   		port: process.env.PORT || 3000,
@@ -17,4 +17,5 @@ var gulp  =require('gulp'),
   			baseDir: './public'
   		}
   	});
+    gulp.watch('public/**/*.js').on('change', browserSync.reload);
   });
