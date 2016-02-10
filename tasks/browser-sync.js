@@ -1,5 +1,4 @@
 var gulp  =require('gulp'),
-  proxyMiddleware = require('http-proxy-middleware'),
   url = require('url'),
   proxy = require('proxy-middleware'),
   browserSync = require('browser-sync');

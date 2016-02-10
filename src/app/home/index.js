@@ -1,5 +1,5 @@
 import {View} from 'backbone';
-import {HomeView} from './view/home.view';
+import {HomeView} from './view';
 import Accounts from './../collections/Accounts';
 import createRootNode from 'virtual-dom/create-element';
 

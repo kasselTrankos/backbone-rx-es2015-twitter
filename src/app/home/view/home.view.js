@@ -1,5 +1,3 @@
-import VNode from 'virtual-dom/vnode/vnode';
-import VText from 'virtual-dom/vnode/vtext';
 import h from 'virtual-dom/h';
 const HomeView = ()=>{
   const content = h("form", [
