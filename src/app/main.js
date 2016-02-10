@@ -1,2 +1,3 @@
 'use strict';
-import {Home} from './home';
+import Home from './home';
+new Home();

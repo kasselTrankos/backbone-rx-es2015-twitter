@@ -29,6 +29,7 @@
     "browserify-shim": "^3.8.12",
     "colors": "^1.1.2",
     "eslint": "^1.10.3",
+    "eslint-plugin-backbone": "^1.2.0",
     "express": "^4.13.4",
     "foreman": "^1.4.1",
     "gulp-bower": "0.0.13",
