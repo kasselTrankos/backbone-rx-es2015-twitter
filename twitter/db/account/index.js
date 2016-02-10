@@ -11,6 +11,7 @@ export const SaveNewAccount = (accountName)=>{
 }
 export const GetAllAccounts = ()=>{
   let deferred = Q.defer();
+  console.log(' get it');
   TwitterAccountModel.find({}, '', (err, doc)=>{
     if(!err)  {
       deferred.resolve(doc);

@@ -1,5 +1,5 @@
 export {TwitterTweetModel, TwitterTweet,
-  TwitterAccountModel, TwitterAccount, Schema,
+  TwitterAccountModel, TwitterAccount, Schema, CollectionExists,
   TwitterTokenModel, TwitterToken, close, connect, disconnect} from './mongoose';
 export {findAllTweetsByAccount, PushMongoTimelineRest,
   InsertTweet, ExistsTweet} from './tweet';

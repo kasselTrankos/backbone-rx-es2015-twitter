@@ -15,17 +15,12 @@ gulp.task('build-js', function () {
     standalone: 'testapp'
   })
   .transform(babelify, {presets: ["es2015"]})
-
   .bundle()
   .pipe(source(config.paths.js.name))
-
   .pipe(buffer())
   .pipe(sourcemaps.init({loadMaps: true, debug:true}))
   .pipe( uglify({compress:false}))
-
-
   .pipe(sourcemaps.write('.', { addComment: true }))
   .pipe(gulp.dest(config.paths.js.output))
-
   .pipe(connect.reload());
 });

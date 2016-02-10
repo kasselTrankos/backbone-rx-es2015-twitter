@@ -1,5 +1,5 @@
 'strict mode';
-
+import Q from 'q';
 import Mongoose from 'mongoose';
 const urlDatabase = process.env.MONGODB;
 export const Schema = Mongoose.Schema;
@@ -25,6 +25,13 @@ export const disconnect = ()=>{
     return (!err);
   });
 }
+
+export const CollectionExists =(collectionName)=> {
+  const collections = Mongoose.connection.collections;
+
+  for(let key in collections){console.log(key); if(key===collectionName) return true;}
+  return false;
+};
 
 export const connect = ()=> {
   const mongoOptions =
@@ -84,7 +91,7 @@ export const TwitterTweet = new Schema({
   contributors: {type: Array},
   text: {type: String},
   retweet_count: {type: Number},
-  in_reply_to_status_id_str: {type: String},  
+  in_reply_to_status_id_str: {type: String},
   geo: {type: String},
   retweeted: {type: Boolean},
   possibly_sensitive: {type: Boolean},

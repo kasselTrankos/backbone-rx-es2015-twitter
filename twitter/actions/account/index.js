@@ -1,5 +1,6 @@
 import {connect, disconnect, TwitterAccountMode ,
-  SaveNewAccount,  GetAllAccounts} from './../../db';
+  SaveNewAccount,  GetAllAccounts, CollectionExists
+  } from './../../db';
 import Q from 'q';
 export const post = (req, params)=> {
   connect();
@@ -20,7 +21,8 @@ export const post = (req, params)=> {
 
 };
 export const get = (req, params)=> {
-  connect();
+  const conn = connect();
+  
   return GetAllAccounts()
     .then((docs)=>{
       disconnect();
