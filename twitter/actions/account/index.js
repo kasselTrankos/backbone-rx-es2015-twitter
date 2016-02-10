@@ -12,7 +12,7 @@ export const post = (req, params)=> {
     })
     .then((doc)=>{
       disconnect();
-      return {data: GetAll()};
+      return GetAll();
     })
     .catch((err)=>{
       console.log('ERR in account post', err);
@@ -22,11 +22,10 @@ export const post = (req, params)=> {
 };
 export const get = (req, params)=> {
   const conn = connect();
-  
   return GetAllAccounts()
     .then((docs)=>{
       disconnect();
-      return {data: docs};
+      return docss;
     })
     .catch((err)=>{
       console.log('ERR in account get', err);
