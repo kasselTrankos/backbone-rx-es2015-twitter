@@ -3,7 +3,7 @@ import _ from 'lodash';
 const ListAccountView = (buttons=[])=>{
   const content = h("div", [
     (buttons.length===0)
-      ? h('p', {className:'text-info'}, ['no hay ninguna cuenta'])
+      ? h('p', {className:'text-info'}, ['no hay ninguna cuenta introduce una please!!'])
       : _.map(buttons, Button)
   ]);
   const Button = (button)=> {
