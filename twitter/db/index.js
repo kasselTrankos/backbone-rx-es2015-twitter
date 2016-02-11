@@ -4,4 +4,4 @@ export {TwitterTweetModel, TwitterTweet,
 export {findAllTweetsByAccount, PushMongoTimelineRest,
   InsertTweet, ExistsTweet} from './tweet';
 export {GetAllAccounts, ExitsAccount,
-  GetIdFromAccount} from './account';
+  GetIdFromAccount, SaveNewAccount} from './account';

@@ -5,14 +5,14 @@ import Q from 'q';
 export const post = (req, params)=> {
   connect();
   const {name} = req.body;
+  console.log(name, ' with is');
   return SaveNewAccount(name)
     .then((doc)=>{
-      if(doc===null) return SaveNewAccount(name);
-      return doc;
+      return GetAllAccounts();
     })
-    .then((doc)=>{
+    .then((docs)=>{
       disconnect();
-      return GetAll();
+      return docs;
     })
     .catch((err)=>{
       console.log('ERR in account post', err);
@@ -25,7 +25,7 @@ export const get = (req, params)=> {
   return GetAllAccounts()
     .then((docs)=>{
       disconnect();
-      return docss;
+      return docs;
     })
     .catch((err)=>{
       console.log('ERR in account get', err);

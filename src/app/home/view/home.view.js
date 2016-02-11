@@ -1,7 +1,7 @@
 import h from 'virtual-dom/h';
 const HomeView = ()=>{
-  const content = h("form", [
-    h("h3", {'className': 'blue'}, ['Form given data']),
+  const content = h('form', {method: 'POST', id:'accountSave'}, [
+    h("h3", {'className': 'blue'}, ['Añade cuenta de twitter']),
     //{ render: TodoList, data: state.items },
     h("div", {'className':'form-group'}, [
       h('label', {'for':'twitterAccount'}, ['Cuenta de Twitter']),

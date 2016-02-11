@@ -1,6 +1,8 @@
 import {View} from 'backbone';
+import $ from 'jquery';
 import {HomeView, ListAccountView} from './view';
 import Accounts from './../collections/Accounts';
+import Account from './../models/Account';
 import createRootNode from 'virtual-dom/create-element';
 
 export default class Home extends View {
@@ -10,6 +12,21 @@ export default class Home extends View {
   }
   el() {
     return '#form';
+  }
+  events(){
+    return {
+      'click form#accountSave button': 'submit'
+    };
+  }
+  submit(e){
+    e.preventDefault();
+    const accountName = $('form input:eq(0)').val();
+    const account = new Account({name: accountName});
+    account.save();
+    this.accounts.add(account);
+    console.log('savibng:', account);
+    return false;
+
   }
   initialize() {
     this.accounts = new Accounts();
@@ -36,7 +53,6 @@ export default class Home extends View {
     ///this.listenTo(this.model, "change", this.render);
   }
   renderAccounts(){
-    console.log(this.accounts.size(), ' poilo');
     const node = new ListAccountView(this.accounts);
     this.$el.append(createRootNode(node));
   }
