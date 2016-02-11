@@ -1,6 +1,7 @@
 var gulp  =require('gulp'),
   url = require('url'),
   proxy = require('proxy-middleware'),
+  historyApiFallback = require('connect-history-api-fallback'),
   browserSync = require('browser-sync');
 
   gulp.task('connect-server', function(){
@@ -12,7 +13,7 @@ var gulp  =require('gulp'),
   		open: false,
   		notify: false,
   		port: process.env.PORT || 3000,
-      middleware: [proxy(proxyOptions)],
+      middleware: [proxy(proxyOptions),  historyApiFallback()],
   		server: {
   			baseDir: './public'
   		}
