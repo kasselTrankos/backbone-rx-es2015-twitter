@@ -6,3 +6,6 @@ uses:
  - [RX](https://github.com/Reactive-Extensions/RxJS)
  - [Backbone](http://backbonejs.org/)
  - [Bootstrap](http://getbootstrap.com/)
+
+Links helpfull for this app:
+ - [Virtual dom basic usage with h](http://ricostacruz.com/cheatsheets/virtual-dom.html)
