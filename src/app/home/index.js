@@ -29,33 +29,18 @@ export default class Home extends View {
 
   }
   initialize() {
+
     this.accounts = new Accounts();
-    //this.accounts.on('fetch', this.renderAccounts, this);
     this.listenTo(this.accounts, 'reset', this.renderAccounts);
-
-    /*this.accounts.fetch({
-      success: (data)=>{
-        console.log(data, 'ounohk');
-      },
-      error: (e)=>{
-        console.log(e, 'error');
-      }
-    });*/
-
-    this.accounts.fetch();/*
-    .done(function() {
-      console.log(' lleva pronmse o no quien lo s');
-    })
-    .fail((e)=>{
-
-    });*/
+    this.accounts.on('change', this.renderAccounts, this);
+    this.accounts.fetch();
     this.render();
-    //this.renderAccounts();
-    ///this.listenTo(this.model, "change", this.render);
+    this.listView = ListAccountView(this.$el);
   }
   renderAccounts(){
-    const node = new ListAccountView(this.accounts);
-    this.$el.append(createRootNode(node));
+  /*  const node = new ListAccountView(this.accounts);
+    this.$el.append(createRootNode(node));*/
+    this.listView(this.accounts);
   }
   render() {
     const node =  HomeView();
