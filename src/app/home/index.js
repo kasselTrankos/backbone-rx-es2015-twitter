@@ -30,7 +30,8 @@ export default class Home extends View {
   }
   initialize() {
     this.accounts = new Accounts();
-    this.accounts.bind('change', this.renderAccounts);
+    //this.accounts.on('fetch', this.renderAccounts, this);
+    this.listenTo(this.accounts, 'reset', this.renderAccounts);
 
     /*this.accounts.fetch({
       success: (data)=>{
@@ -49,7 +50,7 @@ export default class Home extends View {
 
     });*/
     this.render();
-    this.renderAccounts();
+    //this.renderAccounts();
     ///this.listenTo(this.model, "change", this.render);
   }
   renderAccounts(){

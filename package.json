@@ -47,6 +47,7 @@
     "q": "^1.4.1",
     "socket.io": "^1.4.5",
     "twit": "^2.2.2",
+    "underscore": "^1.8.3",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
     "vinyl-transform": "^1.0.0",
