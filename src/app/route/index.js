@@ -6,12 +6,12 @@ import $ from 'jquery';
 export default class Route extends Router{
   constructor(){
     super();
-
+    this.view = false;
   }
   routes(){
     return {
       '': () => { this.home(); },
-      ':account': (account, page=1)=>{this.account(account, page);},
+      ':account': (account)=>{this.account(account, 1);},
       ':account/:page': (account, page=1)=>{this.account(account, page);}
     };
   }
@@ -19,6 +19,10 @@ export default class Route extends Router{
     this.view = new Home();
   }
   account(account, page){
-    this.view = this.view.update(page) || new AccountView(this, account, page) ;
+    if(!this.view){
+      this.view = new AccountView(this, account, page);
+    }else{
+      this.view.setPage(page)
+    }
   }
 }

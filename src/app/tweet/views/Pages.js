@@ -5,13 +5,12 @@ import Route from './../../route';
 export default class List extends View{
   constructor(options){
     super(options);
-
     this.page = options.page;
     this.tweetsPerPage = options.tweetsPerPage;
     this.account = options.account;
     this.route = options.route;
-    this.listPages = ListPagesView(this.$el, this.account, this.page, this.tweetsPerPage);
-
+    this.listPages = ListPagesView(this.$el, this.account, this.tweetsPerPage);
+    //this.on('GOTO_PAGE', this.renderPagesTweets, this);
   }
   events(){
     return {
@@ -26,15 +25,15 @@ export default class List extends View{
   }
   gotoPage(e){
     e.preventDefault();
-    console.log(e.currentTarget);
     this.route.navigate(e.currentTarget.getAttribute('href'), {trigger:true});
     return false;
   }
   initialize(){
 
   }
-  renderPagesTweets(size){
-    this.listPages(size)
+  renderPagesTweets(size, currpage=1){
+    console.log('UODATE', size, currpage, 'ERROR');
+    this.listPages(size, currpage)
   }
   renderListTweets(){
 

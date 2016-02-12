@@ -15,7 +15,7 @@ export default class AccountView extends View{
     this.render();
 
     this.list = new List({account:this.account, page:1, tweetsPerPage:6});
-    this.pagination = new Pages({route: route, account:this.account, page:1, tweetsPerPage:6});
+    this.pagination = new Pages({route: route, account:this.account, tweetsPerPage:6});
 
   }
   tagName(){
@@ -29,12 +29,13 @@ export default class AccountView extends View{
     this.listenTo(this.tweets, 'reset', this.renderListTweets);
 
   }
-  update(page){
-    console.log('page', page);
+  setPage(page){
+    this.page = parseInt(page);
+    this.renderListTweets();
   }
   renderListTweets(){
-    this.list.renderListTweets(this.tweets);
-    this.pagination.renderPagesTweets(this.tweets.size());
+    this.list.renderListTweets(this.tweets, this.page);
+    this.pagination.renderPagesTweets(this.tweets.size(), this.page);
   }
   render(){
     const node = ContentView(this.account);
