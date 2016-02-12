@@ -1,5 +1,6 @@
 import h from 'virtual-dom/h';
 import _ from 'lodash';
+
 import diff from 'virtual-dom/diff';
 import patch from 'virtual-dom/patch';
 import createElement from 'virtual-dom/create-element';
@@ -17,8 +18,12 @@ const ListPagesView = (el, account, page=1, tweetsPerPage=10)=>{
     content = h('div', {className: 'list-accounts'}, [
       h('ul', {className: 'pagination'}, [
         _.map(getPages(6), (i)=>{
-          return  h('li', [
-            h('a', {className:'el', href: `/${account}/${i}`}, [i])
+          return  h('li' ,[
+            h('a', {
+              className: (page===i)? 'active':'el',
+              href: `/${account}/${i}`
+
+            }, [i])
           ])
         })
       ])

@@ -4,16 +4,21 @@ import AccountView from './../tweet';
 import $ from 'jquery';
 
 export default class Route extends Router{
+  constructor(){
+    super();
+
+  }
   routes(){
     return {
       '': () => { this.home(); },
-      ':account': (account)=>{this.account(account);}
+      ':account': (account, page=1)=>{this.account(account, page);},
+      ':account/:page': (account, page=1)=>{this.account(account, page);}
     };
   }
   home() {
     this.view = new Home();
   }
-  account(account){
-    this.view = new AccountView(account);
+  account(account, page){
+    this.view = this.view.update(page) || new AccountView(this, account, page) ;
   }
 }

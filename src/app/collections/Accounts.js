@@ -1,5 +1,5 @@
 import {Collection} from 'backbone';
-import {Account} from './../models';
+import Account from './../models/Account';
 
 export default class Accounts extends Collection {
   constructor(options){

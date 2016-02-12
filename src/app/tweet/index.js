@@ -6,16 +6,16 @@ import Pages from './views/Pages';
 import Tweets from './../collections/Tweets';
 
 export default class AccountView extends View{
-  constructor(account, page=1){
+  constructor(route, account, page=1){
     super();
     this.account = account;
     this.page = page;
-
     this.tweets.setAccount(this.account);
     this.tweets.fetch();
     this.render();
+
     this.list = new List({account:this.account, page:1, tweetsPerPage:6});
-    this.pagination = new Pages({account:this.account, page:1, tweetsPerPage:6});
+    this.pagination = new Pages({route: route, account:this.account, page:1, tweetsPerPage:6});
 
   }
   tagName(){
@@ -28,6 +28,9 @@ export default class AccountView extends View{
     this.tweets = new Tweets();
     this.listenTo(this.tweets, 'reset', this.renderListTweets);
 
+  }
+  update(page){
+    console.log('page', page);
   }
   renderListTweets(){
     this.list.renderListTweets(this.tweets);

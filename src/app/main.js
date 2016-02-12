@@ -3,4 +3,7 @@ import Backbone from 'backbone';
 import Route from './route';
 
 new Route();
-Backbone.history.start({ pushState: true });
+Backbone.history.start({
+  pushState: true,
+  hashChange: false      
+});

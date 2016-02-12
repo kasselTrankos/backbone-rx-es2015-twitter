@@ -25,6 +25,7 @@
     "babelify": "^7.2.0",
     "body-parser": "^1.14.2",
     "bower-sync": "^0.1.0",
+    "browser-sync-middleware-spa": "^1.0.0",
     "browserify": "^13.0.0",
     "browserify-shim": "^3.8.12",
     "colors": "^1.1.2",
