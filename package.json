@@ -41,6 +41,7 @@
     "gulp-sass": "^2.1.1",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.1",
+    "html-to-vdom": "^0.7.0",
     "mongoose": "^4.4.2",
     "piping": "^0.3.0",
     "pretty-error": "^2.0.0",

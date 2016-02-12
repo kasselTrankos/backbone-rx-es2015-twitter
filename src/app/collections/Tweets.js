@@ -1,5 +1,5 @@
 import {Collection} from 'backbone';
-import {Tweet} from './../models';
+import Tweet from './../models/Tweet';
 
 export default class Tweets extends Collection{
   constructor(options={}){

@@ -4,11 +4,12 @@ import createRootNode from 'virtual-dom/create-element';
 import List from './views/List';
 
 export default class AccountView extends View{
-  constructor(account){
+  constructor(account, page=1){
     super();
     this.account = account;
+    this.page = page;
     this.render();
-    this.list = new List({account:this.account});
+    this.list = new List({account:this.account, page:1, tweetsPerPage:6});
   }
   tagName(){
     return 'div';

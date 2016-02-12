@@ -1,23 +1,33 @@
 import h from 'virtual-dom/h';
-import _ from 'underscore';
+import _ from 'lodash';
+import VNode from 'virtual-dom/vnode/vnode';
+import VText from 'virtual-dom/vnode/vtext';
 import diff from 'virtual-dom/diff';
 import patch from 'virtual-dom/patch';
 import createElement from 'virtual-dom/create-element';
+import htmlToDom from 'html-to-vdom';
+import {TwitterText} from './../../util/Text';
 const ListTweetsView = (el)=>{
-  let content, prevContent;
+  let content, prevContent, start, end;
+  const convertHTML =  htmlToDom({
+    VNode: VNode,
+    VText: VText
+  });
   content =  h('p', {className:'text-info'}, ['cargando Datos de tus cuentas']);
   let node = createElement(content);
   el.append(node);
-  return (buttons={})=>{
+  return (tweets={}, page=1, tweetsPerPage=10)=>{
     prevContent = content;
+    start = (page - 1) * tweetsPerPage;
+    end = page * tweetsPerPage;
+
+
     content = h('div', {className: 'list-accounts'}, [
-      (buttons.size()===0)
+      (tweets.size()===0)
         ? h('p', {className:'text-info'}, ['no hay ninguna cuenta introduce una please!!'])
-        : _.map(buttons.models, (el)=>h('a', {
-          className:'btn btn-success',
-          type: 'button',
-          href: `/${el.get('name')}`
-        }, [el.get('name')]))
+        : _.map(_.slice(tweets.models, start, end), (el)=>h('p', {
+          className:'tweet'
+        }, [convertHTML(TwitterText(el.get('text')))]))
     ]);
     let delta = diff(prevContent, content);
     node = patch(node, delta);

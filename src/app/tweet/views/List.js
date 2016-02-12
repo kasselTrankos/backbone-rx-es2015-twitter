@@ -6,6 +6,8 @@ export default class List extends View{
   constructor(options){
     super(options);
     this.account = options.account;
+    this.page = options.page;
+    this.tweetsPerPage = options.tweetsPerPage;
     console.log(this.account, ' popso');
     this.tweets.setAccount(this.account);
     this.tweets.fetch();
@@ -25,6 +27,6 @@ export default class List extends View{
 
   }
   renderListTweets(){
-    this.listView(this.tweets);
+    this.listView(this.tweets, this.page, this.tweetsPerPage);
   }
 }
