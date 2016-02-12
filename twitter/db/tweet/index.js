@@ -48,12 +48,13 @@ export const PushMongoTimelineRest = (tweets, account, account_id)=>{
 }
 //will be asociated to previous function, ( power of functional, complex before is update/insert and now not)
 export const ExistsTweet = (tweet)=>{
-  console.log(tweet.id)
+
   let deferred = Q.defer();
   TwitterTweetModel.findOne({id: tweet.id}, '',(err, doc)=>{
     if(!err)  {
+      console.log(doc, ' existe???');
       if(doc===null) deferred.resolve(tweet);
-      else deferred.resolve(doc);
+      else deferred.resolve(false);
     }else{
       console.log('ERR en querys.ExistsTweet: ',err);
       deferred.reject(err);
@@ -77,5 +78,26 @@ export const InsertTweet = (tweet, account, account_id)=>{
       deferred.reject(err);
     }
   });
+  return deferred.promise;
+}
+
+export const InsertOrUpdateTweet = (tweet, account, account_id)=>{
+  let deferred = Q.defer();
+  tweet.account = account;
+  tweet.account_id = account_id;
+  console.log(tweet.id_str, ' SAVE');
+  TwitterTweetModel.update(
+    {id_str: tweet.id_str},
+    { $set: tweet },
+    {upsert: true},
+    (err, numAffected)=>{
+      if(!err){
+        deferred.resolve(tweet);
+      }else{
+        console.log(err);
+        deferred.reject(err);
+      }
+    }
+  );
   return deferred.promise;
 }

@@ -24,7 +24,7 @@ const ListTweetsView = (el)=>{
       (tweets.size()===0)
         ? h('p', {className:'text-info'}, ['no hay ninguna cuenta introduce una please!!'])
         : _.map(_.slice(tweets.models, start, end), (el)=>h('p', {
-          className:'tweet'
+          className:'tweet box-shadow--2dp'
         }, [convertHTML(TwitterText(el.get('text')))]))
     ]);
     let delta = diff(prevContent, content);

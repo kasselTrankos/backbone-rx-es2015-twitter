@@ -1,5 +1,9 @@
 @import "bootstrap";
+@import "box-shadow";
 #wrapper{
+  .tweet{
+    padding: 12px 8px;
+  }
   .list-accounts{
     p{
       font-size: 11px;

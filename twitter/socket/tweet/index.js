@@ -1,6 +1,6 @@
 import SocketIo from 'socket.io';
 import {InsertTweet, ExistsTweet,
-  GetIdFromAccount,
+  GetIdFromAccount, InsertOrUpdateTweet,
   connect, close} from './../../db';
 import Twit from 'twit';
 var T = new Twit({
@@ -25,11 +25,11 @@ export const Tweet = (io, store)=>{
         T.stream('user', { track: accountName }).on('tweet', function(tweet){
           connect();
           GetIdFromAccount(accountName)
-          .then((Account)=>{
+          /*.then((Account)=>{
             account = Account;
             return ExistsTweet(tweet);
-          })
-          .then((doc)=>InsertTweet(doc, account.name, account._id))
+          })*/
+          .then((account)=>InsertOrUpdateTweet(tweet, account.name, account._id))
           .then((doc)=>{
             close();
             console.log('emit', doc.text);
