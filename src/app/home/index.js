@@ -1,6 +1,6 @@
 import {View} from 'backbone';
 import $ from 'jquery';
-import {HomeView, ListAccountView} from './view';
+import {HomeView, ListAccountView} from './tpl';
 import Accounts from './../collections/Accounts';
 import Account from './../models/Account';
 import createRootNode from 'virtual-dom/create-element';
@@ -11,11 +11,11 @@ export default class Home extends View {
     return 'div';
   }
   el() {
-    return '#form';
+    return '#wrapper';
   }
   events(){
     return {
-      'click form#accountSave button': 'submit'
+      'click wrapper#accountSave button': 'submit'
     };
   }
   submit(e){

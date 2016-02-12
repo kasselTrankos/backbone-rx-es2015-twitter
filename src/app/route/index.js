@@ -1,16 +1,19 @@
 import {Router} from 'backbone';
 import Home from './../home';
+import AccountView from './../account';
 import $ from 'jquery';
 
-export default class Route extends Router{  
+export default class Route extends Router{
   routes(){
     return {
-      '': () => { this.home(); }
+      '': () => { this.home(); },
+      ':account': ()=>{this.account();}
     };
   }
-
   home() {
-    console.log('Router#home was called!');
     this.view = new Home();
+  }
+  account(){
+    this.view = new AccountView();
   }
 }
