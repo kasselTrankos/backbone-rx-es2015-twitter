@@ -1,11 +1,13 @@
 import {View} from 'backbone';
 import {ContentView} from './tpl';
 import createRootNode from 'virtual-dom/create-element';
+import List from './views/List';
 
 export default class AccountView extends View{
   constructor(account){
     super();
     this.account = account;
+    this.render();
   }
   tagName(){
     return 'div';
@@ -13,11 +15,10 @@ export default class AccountView extends View{
   el() {
     return '#wrapper';
   }
-  initialize(){
-
+  initialize(account){
   }
   render(){
-    const node = ContentView();
+    const node = ContentView(this.account);
     this.$el.append(createRootNode(node));
   }
 }
