@@ -23,7 +23,7 @@ export default class List extends View{
   render(){
 
   }
-  renderListTweets(tweets){
-    this.listView(tweets, this.page, this.tweetsPerPage);
+  renderListTweets(tweets,page){
+    this.listView(tweets, page, this.tweetsPerPage);
   }
 }

@@ -26,14 +26,14 @@ export default class AccountView extends View{
   }
   initialize(account){
     this.tweets = new Tweets();
-    this.listenTo(this.tweets, 'reset', this.renderListTweets);
+    this.listenTo(this.tweets, 'reset', this.renderListTweetsPagination);
 
   }
   setPage(page){
     this.page = parseInt(page);
-    this.renderListTweets();
+    this.renderListTweetsPagination();
   }
-  renderListTweets(){
+  renderListTweetsPagination(){
     this.list.renderListTweets(this.tweets, this.page);
     this.pagination.renderPagesTweets(this.tweets.size(), this.page);
   }
