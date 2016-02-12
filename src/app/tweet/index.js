@@ -12,10 +12,11 @@ export default class AccountView extends View{
     this.page = page;
     this.tweets.setAccount(this.account);
     this.tweets.fetch();
+    this.$el.empty();
     this.render();
 
     this.list = new List({account:this.account, page:1, tweetsPerPage:6});
-    this.pagination = new Pages({route: route, account:this.account, pagesShown:8});
+    this.pagination = new Pages({route: route, account:this.account, pagesShown:7});
 
   }
   tagName(){

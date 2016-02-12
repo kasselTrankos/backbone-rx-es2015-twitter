@@ -6,7 +6,11 @@ import Account from './../models/Account';
 import createRootNode from 'virtual-dom/create-element';
 
 export default class Home extends View {
+  constructor(route){
+    super();
 
+    this.route = route;
+  }
   tagName() {
     return 'div';
   }
@@ -15,8 +19,15 @@ export default class Home extends View {
   }
   events(){
     return {
-      'click wrapper#accountSave button': 'submit'
+      'click wrapper#accountSave button': 'submit',
+      'click a': 'gotoAccount'
     };
+  }
+  gotoAccount(e){
+    e.preventDefault();
+    console.log(e);
+    this.route.navigate(e.currentTarget.getAttribute('href'), {trigger:true, replace: true});
+    return false;
   }
   submit(e){
     e.preventDefault();
@@ -28,7 +39,7 @@ export default class Home extends View {
 
   }
   initialize() {
-
+    this.$el.empty();
     this.accounts = new Accounts();
     this.listenTo(this.accounts, 'reset', this.renderAccounts);
     this.accounts.on('change', this.renderAccounts, this);

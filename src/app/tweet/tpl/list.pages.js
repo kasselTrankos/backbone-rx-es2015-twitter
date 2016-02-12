@@ -14,7 +14,6 @@ const ListPagesView = (el, account, pagesShown=10)=>{
   el.append(node);
   return (size, page=1)=>{
     prevContent = content;
-
     content = h('div', {className: 'list-accounts'}, [
       h('ul', {className: 'pagination'}, [
         _.map(getPages(size, pagesShown, page), (i)=>{
