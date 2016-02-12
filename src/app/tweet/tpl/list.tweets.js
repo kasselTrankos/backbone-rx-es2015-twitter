@@ -20,8 +20,6 @@ const ListTweetsView = (el)=>{
     prevContent = content;
     start = (page - 1) * tweetsPerPage;
     end = page * tweetsPerPage;
-
-
     content = h('div', {className: 'list-accounts'}, [
       (tweets.size()===0)
         ? h('p', {className:'text-info'}, ['no hay ninguna cuenta introduce una please!!'])

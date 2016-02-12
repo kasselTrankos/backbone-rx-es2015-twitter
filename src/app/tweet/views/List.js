@@ -8,9 +8,8 @@ export default class List extends View{
     this.account = options.account;
     this.page = options.page;
     this.tweetsPerPage = options.tweetsPerPage;
-    console.log(this.account, ' popso');
-    this.tweets.setAccount(this.account);
-    this.tweets.fetch();
+
+
   }
   tagName(){
     return 'div';
@@ -19,14 +18,12 @@ export default class List extends View{
     return '#listTweets';
   }
   initialize(){
-    this.tweets = new Tweets();
-    this.listenTo(this.tweets, 'reset', this.renderListTweets);
     this.listView = ListTweetsView(this.$el);
   }
   render(){
 
   }
-  renderListTweets(){
-    this.listView(this.tweets, this.page, this.tweetsPerPage);
+  renderListTweets(tweets){
+    this.listView(tweets, this.page, this.tweetsPerPage);
   }
 }
