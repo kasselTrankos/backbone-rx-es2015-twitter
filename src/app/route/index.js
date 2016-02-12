@@ -14,6 +14,7 @@ export default class Route extends Router{
     this.view = new Home();
   }
   account(){
+    console.log('view in home?');
     this.view = new AccountView();
   }
 }
