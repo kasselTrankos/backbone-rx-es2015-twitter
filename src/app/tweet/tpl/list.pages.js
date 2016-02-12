@@ -14,20 +14,23 @@ const ListPagesView = (el, account, pagesShown=10)=>{
   el.append(node);
   return (size, page=1)=>{
     prevContent = content;
-    content = h('div', {className: 'list-accounts'}, [
+    content = h('div', {className: 'list-accounts text-center'}, [
       h('ul', {className: 'pagination'}, [
-        _.map(getPages(size, pagesShown, page), (i)=>{
+
+        _.map(getPages(size, pagesShown, page), (item)=>{
+
           return  h('li' ,[
             h('a', {
-              className: (page===i)? 'active':'el',
-              href: `/${account}/${i}`
+              className: (page===item.page && item.type==='number')? 'active':'el',
+              href: `/${account}/${item.page}`
 
-            }, [i])
+            }, [item.text])
           ])
         })
       ])
     ]);
     let delta = diff(prevContent, content);
+
     node = patch(node, delta);
 
 

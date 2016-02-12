@@ -1,6 +1,8 @@
 import _ from 'lodash';
 let currentPage = 1;
 
+const getButtonFirstPage =(page, ShowPagesPagination)=> (lessThanMiddle(page, ShowPagesPagination)) ? [] :[{text:'«', page:1, type:'text'}];
+
 const getTotalPages = (size, itemsPerPage) =>
   Math.ceil(size/itemsPerPage)
 
@@ -26,7 +28,17 @@ const getLastPage =(ShowPagesPagination=6)=>
     getFirstPage()+ShowPagesPagination
 
 const getPages =(size, ShowPagesPagination=6, page=1)=>
-  _.range(ShowPagesPagination).map((i)=>parseInt(getFirstPage(size, ShowPagesPagination, page))+i)
+  _.concat(getButtonFirstPage(page, ShowPagesPagination), _.range(ShowPagesPagination)).map(
+    (item)=>{
+      if(item.text) return item
+      else return {
+        type: 'number',
+        text: parseInt(getFirstPage(size, ShowPagesPagination, page))+item,
+        page: parseInt(getFirstPage(size, ShowPagesPagination, page))+item
+      }
+
+    })
+
 
 
 export {getPages}
