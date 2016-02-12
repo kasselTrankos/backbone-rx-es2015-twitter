@@ -1,4 +1,6 @@
 import {View} from 'backbone';
+import {Tweets} from './../../collections';
+import {ListTweetsView} from './../tpl';
 
 export default class List extends View{
   constructor(){
@@ -11,9 +13,13 @@ export default class List extends View{
     return '#listTweets';
   }
   initialize(){
-
+    this.tweets = new Tweets();
+    this.listenTo(this.accounts, 'reset', this.renderListTweets);
   }
   render(){
+
+  }
+  renderListTweets(){
 
   }
 }
