@@ -24,7 +24,6 @@ export default class Home extends View {
     const account = new Account({name: accountName});
     account.save();
     this.accounts.add(account);
-    console.log('savibng:', account);
     return false;
 
   }

@@ -8,6 +8,7 @@ export default class AccountView extends View{
     super();
     this.account = account;
     this.render();
+    this.list = new List({account:this.account});
   }
   tagName(){
     return 'div';
