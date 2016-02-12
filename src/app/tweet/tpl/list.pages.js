@@ -7,7 +7,7 @@ import createElement from 'virtual-dom/create-element';
 import {TwitterText} from './../../util/Text';
 import {getPages} from './../../util/Pagination';
 
-const ListPagesView = (el, account, tweetsPerPage=10)=>{
+const ListPagesView = (el, account, pagesShown=10)=>{
   let content, prevContent, pages;
   content =  h('p', {className:'text-info'}, ['Creando paginación']);
   let node = createElement(content);
@@ -17,7 +17,7 @@ const ListPagesView = (el, account, tweetsPerPage=10)=>{
 
     content = h('div', {className: 'list-accounts'}, [
       h('ul', {className: 'pagination'}, [
-        _.map(getPages(size, 6, page), (i)=>{
+        _.map(getPages(size, pagesShown, page), (i)=>{
           return  h('li' ,[
             h('a', {
               className: (page===i)? 'active':'el',

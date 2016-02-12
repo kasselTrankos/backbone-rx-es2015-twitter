@@ -6,8 +6,9 @@ const getTotalPages = (size, itemsPerPage) =>
 
 const setActualPage = (page=1) =>
   {currentPage = page; return currentPage;};
-const lessThanMiddle = (page)=>
-  (page<=getMiddleFromPagination())
+
+const lessThanMiddle = (page, ShowPagesPagination)=>
+  (page<=getMiddleFromPagination(ShowPagesPagination))
 
 const isinLastSectionPagination =(ShowPagesPagination=6, page=1)=>
   (page>=parseInt(getPages()-ShowPagesPagination))
@@ -16,7 +17,7 @@ const getMiddleFromPagination =(showPagesPagination=6) =>
   Math.ceil(showPagesPagination/2)
 
 const getFirstPage = (size, ShowPagesPagination=6, page=1)=> {
-  return (lessThanMiddle(page)) ? page :
+  return (lessThanMiddle(page)) ? 1 :
   (isinLastSectionPagination(ShowPagesPagination, page)) ? parseInt(getTotalPages(size, ShowPagesPagination)-ShowPagesPagination)
   : Math.ceil(page-getMiddleFromPagination())
 };

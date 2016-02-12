@@ -6,10 +6,10 @@ export default class List extends View{
   constructor(options){
     super(options);
     this.page = options.page;
-    this.tweetsPerPage = options.tweetsPerPage;
+    this.pagesShown = options.pagesShown;
     this.account = options.account;
     this.route = options.route;
-    this.listPages = ListPagesView(this.$el, this.account, this.tweetsPerPage);
+    this.listPages = ListPagesView(this.$el, this.account, this.pagesShown);
     //this.on('GOTO_PAGE', this.renderPagesTweets, this);
   }
   events(){
@@ -32,7 +32,6 @@ export default class List extends View{
 
   }
   renderPagesTweets(size, currpage=1){
-    console.log('UODATE', size, currpage, 'ERROR');
     this.listPages(size, currpage)
   }
   renderListTweets(){
