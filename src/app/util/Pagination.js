@@ -1,58 +1,64 @@
 import _ from 'lodash';
 let currentPage = 1;
 
-const getButtonFirstPage =(page, ShowPagesPagination)=>
-  (lessThanMiddle(page, ShowPagesPagination)) ? [] :[{text:'«', page:1, type:'text'}];
+const getButtonFirstPage =(size, page, pagesToShow)=>
+  (getFirstPage(size, pagesToShow, page)>1)
+    ? [{text:'«', page:1, type:'text'}]
+    : []
 
-const getButtonPrevPage = (page, ShowPagesPagination)=>
-  (lessThanMiddle(page, ShowPagesPagination)) ? [] :[{text:'‹', page:parseInt(page)-1, type:'text'}];
+const getButtonPrevPage = (size, page, pagesToShow)=>
+  (getFirstPage(size, pagesToShow, page)>1)
+    ? [{text:'‹', page:parseInt(page)-1, type:'text'}]
+    : []
+const getButtonLastPage =(size, page, pagesToShow)=>
+  (isMoreThanEndMiddle(size, page, pagesToShow)) ? [] :[{text:'»', page:size, type:'text'}];
 
-const getButtonLastPage =(size, page, ShowPagesPagination)=>
-  (isMoreThanEndMiddle(size, page, ShowPagesPagination)) ? [] :[{text:'»', page:size, type:'text'}];
+const getTotalPages = (size, pagesToShow) =>
+  Math.ceil(size/pagesToShow)
 
-const getTotalPages = (size, ShowPagesPagination) =>
-  Math.ceil(size/ShowPagesPagination)
-
-const isMoreThanEndMiddle = (size, page, ShowPagesPagination)=>
-  (page<(getTotalPages(size, ShowPagesPagination)-getMiddleFromPagination(ShowPagesPagination)))
+const isMoreThanEndMiddle = (size, page, pagesToShow)=>
+  (page<(getTotalPages(size, pagesToShow)-getMiddleFromPagination(pagesToShow)))
 
 const setActualPage = (page=1) =>
   {currentPage = page; return currentPage;};
 
-const lessThanMiddle = (page, ShowPagesPagination)=>
-  (page<=getMiddleFromPagination(ShowPagesPagination))
+const lessThanMiddle = (page, pagesToShow)=>
+  (page<=getMiddleFromPagination(pagesToShow))
 
-const isinLastSectionPagination =(ShowPagesPagination=6, page=1)=>
-  (page>=parseInt(getPages()-ShowPagesPagination))
+const isinLastSectionPagination =(size, pagesToShow=6, page=1)=>
+  (page>=parseInt(getTotalPages(size, pagesToShow)-pagesToShow))
 
-const getMiddleFromPagination =(showPagesPagination=6) =>
-  Math.ceil(showPagesPagination/2)
+const getMiddleFromPagination =(pagesToShow=6) =>
+  Math.ceil(pagesToShow/2)
 
-const getFirstPage = (size, ShowPagesPagination=6, page=1)=> {
-  return (lessThanMiddle(page)) ? 1 :
-  (isinLastSectionPagination(ShowPagesPagination, page)) ? parseInt(getTotalPages(size, ShowPagesPagination)-ShowPagesPagination)
-  : Math.ceil(page-getMiddleFromPagination())
-};
-
-const getLastPage =(ShowPagesPagination=6)=>
-    getFirstPage()+ShowPagesPagination
-
-const ShowPages = (page, size, ShowPagesPagination)=>
-  ((page+ShowPagesPagination)<getTotalPages(size, ShowPagesPagination))
-    ? ShowPagesPagination
-    : getTotalPages(size, ShowPagesPagination)
+const getFirstPage = (size, pagesToShow=6, page=1)=>(lessThanMiddle(page))
+    ? 1
+    : (isinLastSectionPagination(size, pagesToShow, page))
+      ? parseInt(getTotalPages(size, pagesToShow)-pagesToShow)
+      : Math.ceil(page-getMiddleFromPagination(pagesToShow))
 
 
-const getPages =(size, ShowPagesPagination=6, page=1)=>{
-    console.log(getTotalPages(size, ShowPagesPagination), 'page:', page, 'calle', isMoreThanEndMiddle(size, page, ShowPagesPagination), 'more que ', getMiddleFromPagination(ShowPagesPagination));
-    let buttonFirstPAge = getButtonFirstPage(page, ShowPagesPagination);
-    let buttonPrevPage =getButtonPrevPage(page, ShowPagesPagination);
-    let buttons =  _.range(ShowPages(page, size, ShowPagesPagination)).map(
+const getLastPage =(pagesToShow=6)=>
+    getFirstPage()+pagesToShow
+
+const Pages = (page, size, pagesToShow)=>
+  ((page+pagesToShow)<getTotalPages(size, pagesToShow))
+    ? pagesToShow
+    : getTotalPages(size, pagesToShow)
+
+
+
+const getPages =(size, pagesToShow=6, page=1)=>{
+    
+    let buttonFirstPAge = getButtonFirstPage(size, page, pagesToShow);
+    let buttonPrevPage =getButtonPrevPage(size, page, pagesToShow);
+    let buttons =  _.range(Pages(page, size, pagesToShow)).map(
       (item)=> {
+        let firstPage = ((getFirstPage(size, pagesToShow, page)<=0) ? 1 : getFirstPage(size, pagesToShow, page))
       return {
         type: 'number',
-        text: parseInt(getFirstPage(size, ShowPagesPagination, page))+item,
-        page: parseInt(getFirstPage(size, ShowPagesPagination, page))+item
+        text: firstPage+item,
+        page: firstPage+item
       }});
     return _.concat(buttonFirstPAge, buttonPrevPage, buttons);
 //  );
