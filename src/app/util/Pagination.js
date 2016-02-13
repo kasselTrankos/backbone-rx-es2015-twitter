@@ -14,12 +14,17 @@ const getButtonLastPage =(size, page=1, pagesShown=6)=>
   ? [{text:'»', page:getTotalPages(size, pagesShown), type:'text'}]
   : []
 
+const getButtonNextPage =(size, page=1, pagesShown=6)=>
+    (isLessThanEnd(size, page, pagesShown))
+    ? [{text:'›', page:page+1, type:'text'}]
+    : []
+
 
 const getTotalPages = (size, pagesShown) =>
   Math.ceil(size/pagesShown)
 
 const isLessThanEnd = (size, page=1, pagesShown=6)=>
-  (page<(getTotalPages(size, pagesShown)-getMiddleFromPagination(pagesShown)))
+  (page<(getTotalPages(size, pagesShown)-getMiddleFromPagination(pagesShown)+1))
 
 const lessThanMiddle = (page, pagesShown)=>
   (page<getMiddleFromPagination(pagesShown))
@@ -55,20 +60,19 @@ const Pages = (size, pagesShown=6)=>
 
 
 const getPages =(size, page=1, pagesShown=6)=>{
-  console.log(size, ' SIZE');
-    let buttonFirstPAge = getButtonFirstPage(size, page, pagesShown);
-    let buttonPrevPage = getButtonPrevPage(size, page, pagesShown);
-    let buttonLastPage = getButtonLastPage(size, page, pagesShown);
-    let buttons =  _.range(Pages(size, pagesShown)).map(
-      (item)=> {
-      return {
-        type: 'number',
-        text: getFirstPage(size, page, pagesShown)+item,
-        page: getFirstPage(size, page, pagesShown)+item
-      }});
-    return _.concat(buttonFirstPAge, buttonPrevPage, buttons, buttonLastPage);
-//  );
-
+  let buttonFirstPAge = getButtonFirstPage(size, page, pagesShown);
+  let buttonPrevPage = getButtonPrevPage(size, page, pagesShown);
+  let buttonLastPage = getButtonLastPage(size, page, pagesShown);
+  let buttonNextPage = getButtonNextPage(size, page, pagesShown);
+  let buttons =  _.range(Pages(size, pagesShown)).map(
+    (item)=> {
+    return {
+      type: 'number',
+      text: getFirstPage(size, page, pagesShown)+item,
+      page: getFirstPage(size, page, pagesShown)+item
+    }});
+  return _.concat(buttonFirstPAge, buttonPrevPage,
+    buttons, buttonNextPage, buttonLastPage);
 }
 
 

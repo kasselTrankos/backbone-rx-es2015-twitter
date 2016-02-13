@@ -52,14 +52,14 @@ describe('Pagination', function () {
     expect(getButtonLastPage(size, page, showPages)[0]).to.have.property('text');
     done();
   });
-  it('expect page 73 isLessThanEnd to be true', (done)=>{
-    page  = 76;
-    size = 561;
-    expect(isLessThanEnd(size, page, showPages)).to.have.true;
+  it('expect page 80 isLessThanEnd to not be true', (done)=>{
+    page  = 80;
+    size = 581;
+    expect(isLessThanEnd(size, page, showPages)).to.not.be.true;
     done();
   });
-  it('expect getButtonLastPage length is 0 page is 77', (done)=>{
-    page = 77;
+  it('expect getButtonLastPage length is 0 page is 80', (done)=>{
+    page = 80;
     expect(getButtonLastPage(size, page, showPages)).to.have.length(0);
     done();
   });
