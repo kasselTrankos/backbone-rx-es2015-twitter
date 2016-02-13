@@ -6,7 +6,7 @@ const ContentView = (accountName, limit=10, page=1)=>{
         h('h3', {className:'col-md-8 text-primary'}, [`Tweets de ${accountName}`])
       ]),
       h('div', {className: 'col-xs-6 col-md-4'}, [
-        h('a', {className:'col-md 4 btn btn-info', href: '/'}, ['home'])
+        h('a', {className:'home btn btn-info', href: '/'}, ['home'])
       ])
     ]),
     h('div', {className:'row'}, [

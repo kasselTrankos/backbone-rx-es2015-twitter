@@ -10,6 +10,7 @@ export default class AccountView extends View{
     super();
     this.account = account;
     this.page = page;
+    this.route = route;
     this.tweets.setAccount(this.account);
     this.tweets.fetch();
     this.$el.empty();
@@ -24,6 +25,16 @@ export default class AccountView extends View{
   }
   el() {
     return '#wrapper';
+  }
+  events(){
+    return {
+      'click a.home' : 'gotoHome'
+    }
+  }
+  gotoHome(e){
+    e.preventDefault();
+    this.route.navigate(e.currentTarget.getAttribute('href'), {trigger:true});
+    return false;
   }
   initialize(account){
     this.tweets = new Tweets();

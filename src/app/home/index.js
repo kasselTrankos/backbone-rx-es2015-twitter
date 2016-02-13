@@ -20,7 +20,7 @@ export default class Home extends View {
   events(){
     return {
       'click #accountSave button': 'submit',
-      'click a': 'gotoAccount'
+      'click a.goto-account': 'gotoAccount'
     };
   }
   gotoAccount(e){

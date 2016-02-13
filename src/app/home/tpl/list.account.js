@@ -14,7 +14,7 @@ const ListAccountView = (el)=>{
       (buttons.size()===0)
         ? h('p', {className:'text-info'}, ['no hay ninguna cuenta introduce una please!!'])
         : _.map(buttons.models, (el)=>h('a', {
-          className:'btn btn-success',
+          className:'btn btn-success goto-account',
           type: 'button',
           href: `/${el.get('name')}`
         }, [el.get('name')]))

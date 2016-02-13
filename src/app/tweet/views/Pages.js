@@ -14,7 +14,7 @@ export default class List extends View{
   }
   events(){
     return {
-      'click a': 'gotoPage'
+      'click .pagination a': 'gotoPage'
     };
   }
   tagName(){

@@ -16,19 +16,11 @@ export default class List extends View{
   el() {
     return '#listTweets';
   }
-  events(){
-    return {
-      'click a' : 'gotoHome'
-    }
-  }
+
   initialize(){
     this.listView = ListTweetsView(this.$el);
   }
-  gotoHome(e){
-    e.preventDefault();
-    this.route.navigate(e.currentTarget.getAttribute('href'), {trigger:true});
-    return false;
-  }
+  
   render(){
 
   }
