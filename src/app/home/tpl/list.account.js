@@ -1,5 +1,5 @@
 import h from 'virtual-dom/h';
-import _ from 'underscore';
+import _ from 'lodash';
 import diff from 'virtual-dom/diff';
 import patch from 'virtual-dom/patch';
 import createElement from 'virtual-dom/create-element';

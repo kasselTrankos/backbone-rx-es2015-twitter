@@ -47,13 +47,12 @@ export default class Home extends View {
     this.listView = ListAccountView(this.$el);
   }
   renderAccounts(){
-  /*  const node = new ListAccountView(this.accounts);
-    this.$el.append(createRootNode(node));*/
     this.listView(this.accounts);
   }
   render() {
     const node =  HomeView();
     this.$el.append(createRootNode(node));
+    return this;
 
   }
 }
