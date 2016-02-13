@@ -5,11 +5,10 @@ import {ListTweetsView} from './../tpl';
 export default class List extends View{
   constructor(options){
     super(options);
+    this.route = options.route;
     this.account = options.account;
     this.page = options.page;
     this.tweetsPerPage = options.tweetsPerPage;
-
-
   }
   tagName(){
     return 'div';
@@ -17,8 +16,18 @@ export default class List extends View{
   el() {
     return '#listTweets';
   }
+  events(){
+    return {
+      'click a' : 'gotoHome'
+    }
+  }
   initialize(){
     this.listView = ListTweetsView(this.$el);
+  }
+  gotoHome(e){
+    e.preventDefault();
+    this.route.navigate(e.currentTarget.getAttribute('href'), {trigger:true});
+    return false;
   }
   render(){
 
