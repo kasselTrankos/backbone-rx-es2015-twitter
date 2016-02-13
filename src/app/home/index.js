@@ -25,7 +25,6 @@ export default class Home extends View {
   }
   gotoAccount(e){
     e.preventDefault();
-    console.log(e);
     this.route.navigate(e.currentTarget.getAttribute('href'), {trigger:true, replace: true});
     return false;
   }
@@ -42,7 +41,7 @@ export default class Home extends View {
     this.$el.empty();
     this.accounts = new Accounts();
     this.listenTo(this.accounts, 'reset', this.renderAccounts);
-    this.accounts.on('change', this.renderAccounts, this);
+    this.accounts.on('add', this.renderAccounts, this);
     this.accounts.fetch();
     this.render();
     this.listView = ListAccountView(this.$el);
