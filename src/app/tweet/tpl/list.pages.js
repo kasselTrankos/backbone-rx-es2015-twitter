@@ -14,10 +14,12 @@ const ListPagesView = (el, account, pagesShown=10)=>{
   el.append(node);
   return (size, page=1)=>{
     prevContent = content;
+    pages = getPages(size, pagesShown, page);
+    console.log(pages, ' 0opop0');
     content = h('div', {className: 'list-accounts text-center'}, [
       h('ul', {className: 'pagination'}, [
 
-        _.map(getPages(size, pagesShown, page), (item)=>{
+        _.map(pages, (item)=>{
 
           return  h('li' ,[
             h('a', {
