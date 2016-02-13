@@ -23,7 +23,7 @@ const setActualPage = (page=1) =>
   {currentPage = page; return currentPage;};
 
 const lessThanMiddle = (page, pagesToShow)=>
-  (page<=getMiddleFromPagination(pagesToShow))
+  (page<getMiddleFromPagination(pagesToShow))
 
 const isinLastSectionPagination =(size, pagesToShow=6, page=1)=>
   (page>=parseInt(getTotalPages(size, pagesToShow)-pagesToShow))
@@ -31,11 +31,18 @@ const isinLastSectionPagination =(size, pagesToShow=6, page=1)=>
 const getMiddleFromPagination =(pagesToShow=6) =>
   Math.ceil(pagesToShow/2)
 
-const getFirstPage = (size, pagesToShow=6, page=1)=>(lessThanMiddle(page))
+///mal necesito hacer un buen test here please now!!!
+const getFirstPage = (size, pagesToShow=6, page=1)=>
+  (lessThanMiddle(page, pagesToShow))
     ? 1
     : (isinLastSectionPagination(size, pagesToShow, page))
-      ? parseInt(getTotalPages(size, pagesToShow)-pagesToShow)
-      : Math.ceil(page-getMiddleFromPagination(pagesToShow))
+      ? parseInt(getTotalPages(size, pagesToShow) - pagesToShow)
+      : atMinium(Math.ceil( page -getMiddleFromPagination(pagesToShow) + 1), 1)
+
+const atMinium = (number, minium)=>
+  (number<minium)
+    ? minium
+    : number
 
 
 const getLastPage =(pagesToShow=6)=>
@@ -49,7 +56,7 @@ const Pages = (page, size, pagesToShow)=>
 
 
 const getPages =(size, pagesToShow=6, page=1)=>{
-    
+
     let buttonFirstPAge = getButtonFirstPage(size, page, pagesToShow);
     let buttonPrevPage =getButtonPrevPage(size, page, pagesToShow);
     let buttons =  _.range(Pages(page, size, pagesToShow)).map(
@@ -67,4 +74,4 @@ const getPages =(size, pagesToShow=6, page=1)=>{
 
 
 
-export {getPages}
+export {getPages, getFirstPage, getMiddleFromPagination, getTotalPages, isinLastSectionPagination}
