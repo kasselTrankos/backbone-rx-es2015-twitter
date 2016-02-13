@@ -40,7 +40,7 @@ const getFirstPage = (size, page=1,  pagesShown=6)=>
   (lessThanMiddle(page, pagesShown))
     ? 1
     : (isInLastMiddle(size, page, pagesShown))
-      ? parseInt(getTotalPages(size, pagesShown) - pagesShown + 1)
+      ? atMinium(parseInt(getTotalPages(size, pagesShown) - pagesShown + 1), 1)
       : atMinium(Math.ceil( page - getMiddleFromPagination(pagesShown) + 1), 1)
 
 const atMinium = (number, minium)=>
@@ -60,6 +60,7 @@ const Pages = (size, pagesShown=6)=>
 
 
 const getPages =(size, page=1, pagesShown=6)=>{
+  console.log(size);
   let buttonFirstPAge = getButtonFirstPage(size, page, pagesShown);
   let buttonPrevPage = getButtonPrevPage(size, page, pagesShown);
   let buttonLastPage = getButtonLastPage(size, page, pagesShown);

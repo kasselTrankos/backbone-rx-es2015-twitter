@@ -63,5 +63,11 @@ describe('Pagination', function () {
     expect(getButtonLastPage(size, page, showPages)).to.have.length(0);
     done();
   });
+  it('expect first page is 1 when got size 26 an is in page 4', (done)=>{
+    page = 4;
+    size = 26;
+    assert.equal(1, getFirstPage(size, page , showPages));
+    done();
+  });
 
 });
