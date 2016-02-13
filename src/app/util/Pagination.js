@@ -10,8 +10,8 @@ const getButtonPrevPage = (page, ShowPagesPagination)=>
 const getButtonLastPage =(size, page, ShowPagesPagination)=>
   (isMoreThanEndMiddle(size, page, ShowPagesPagination)) ? [] :[{text:'»', page:size, type:'text'}];
 
-const getTotalPages = (size, itemsPerPage) =>
-  Math.ceil(size/itemsPerPage)
+const getTotalPages = (size, ShowPagesPagination) =>
+  Math.ceil(size/ShowPagesPagination)
 
 const isMoreThanEndMiddle = (size, page, ShowPagesPagination)=>
   (page<(getTotalPages(size, ShowPagesPagination)-getMiddleFromPagination(ShowPagesPagination)))
@@ -37,11 +37,17 @@ const getFirstPage = (size, ShowPagesPagination=6, page=1)=> {
 const getLastPage =(ShowPagesPagination=6)=>
     getFirstPage()+ShowPagesPagination
 
+const ShowPages = (page, size, ShowPagesPagination)=>
+  ((page+ShowPagesPagination)<getTotalPages(size, ShowPagesPagination))
+    ? ShowPagesPagination
+    : getTotalPages(size, ShowPagesPagination)
+
+
 const getPages =(size, ShowPagesPagination=6, page=1)=>{
-    console.log(page, 'calle');
+    console.log(getTotalPages(size, ShowPagesPagination), 'page:', page, 'calle', isMoreThanEndMiddle(size, page, ShowPagesPagination), 'more que ', getMiddleFromPagination(ShowPagesPagination));
     let buttonFirstPAge = getButtonFirstPage(page, ShowPagesPagination);
     let buttonPrevPage =getButtonPrevPage(page, ShowPagesPagination);
-    let buttons =  _.range(ShowPagesPagination).map(
+    let buttons =  _.range(ShowPages(page, size, ShowPagesPagination)).map(
       (item)=> {
       return {
         type: 'number',
