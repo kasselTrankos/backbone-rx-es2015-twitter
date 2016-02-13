@@ -19,7 +19,7 @@ export default class Home extends View {
   }
   events(){
     return {
-      'click wrapper#accountSave button': 'submit',
+      'click #accountSave button': 'submit',
       'click a': 'gotoAccount'
     };
   }
