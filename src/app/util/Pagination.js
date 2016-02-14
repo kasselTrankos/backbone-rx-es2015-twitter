@@ -24,7 +24,8 @@ const getTotalPages = (size, pagesShown) =>
   Math.ceil(size/pagesShown)
 
 const isLessThanEnd = (size, page=1, pagesShown=6)=>
-  (page<(getTotalPages(size, pagesShown)-getMiddleFromPagination(pagesShown)+1))
+  (page<(getTotalPages(size, pagesShown)-getMiddleFromPagination(pagesShown)+1)
+  && getTotalPages(size, pagesShown)>pagesShown)
 
 const lessThanMiddle = (page, pagesShown)=>
   (page<getMiddleFromPagination(pagesShown))

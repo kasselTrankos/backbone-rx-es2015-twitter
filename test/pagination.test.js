@@ -69,5 +69,12 @@ describe('Pagination', function () {
     assert.equal(1, getFirstPage(size, page , showPages));
     done();
   });
+  it('expect no show button end page when pages is less that showPages', (done)=>{
+    page = 1;
+    size = 32;
+    expect(getButtonLastPage(size, page, showPages)).to.have.length(0);
+    done();
+
+  });
 
 });
