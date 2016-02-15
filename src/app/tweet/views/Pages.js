@@ -1,9 +1,9 @@
 import {View} from 'backbone';
 import {ListPagesView} from './../tpl';
-import Route from './../../route';
+
 import Rx from 'rx';
 import $ from 'jquery';
-import 'rx-dom';
+
 
 export default class List extends View{
   constructor(options){
@@ -57,6 +57,7 @@ export default class List extends View{
   renderPagesTweets(size, currpage=1){
     this.listPages(size, currpage);
     if(!this.RxObservable)this.observables();
+    return this;
   }
   renderListTweets(){
   }

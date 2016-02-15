@@ -4,11 +4,11 @@ import {HomeView, ListAccountView} from './tpl';
 import Accounts from './../collections/Accounts';
 import Account from './../models/Account';
 import createRootNode from 'virtual-dom/create-element';
+import Rx from 'rx';
 
 export default class Home extends View {
   constructor(route){
     super();
-
     this.route = route;
   }
   tagName() {
@@ -18,6 +18,7 @@ export default class Home extends View {
     return '#wrapper';
   }
   events(){
+
     return {
       'click #accountSave button': 'submit',
       'click a.goto-account': 'gotoAccount'
@@ -50,9 +51,23 @@ export default class Home extends View {
     this.listView(this.accounts);
   }
   render() {
-    const node =  HomeView();
+    const node =  HomeView(this.$el);
+    node();
+    const el = this;
     this.$el.append(createRootNode(node));
+    const input = document.getElementById('twitterAccount');
+    Rx.Observable.fromEvent(input, 'keyup')
+    .map((e)=>e.currentTarget.value)
+    .map((input)=>/^@?([a-zA-Z0-9_]){1,15}$/.test(input))
+    .distinctUntilChanged()
+    .subscribe(
+      (result)=>{
+        node(!result);
+      },
+      (err)=>{
+        logError(err);
+      }
+    );
     return this;
-
   }
 }
