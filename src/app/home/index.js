@@ -6,7 +6,11 @@ import Account from './../models/Account';
 import createRootNode from 'virtual-dom/create-element';
 
 export default class Home extends View {
+  constructor(route){
+    super();
 
+    this.route = route;
+  }
   tagName() {
     return 'div';
   }
@@ -15,8 +19,14 @@ export default class Home extends View {
   }
   events(){
     return {
-      'click wrapper#accountSave button': 'submit'
+      'click #accountSave button': 'submit',
+      'click a.goto-account': 'gotoAccount'
     };
+  }
+  gotoAccount(e){
+    e.preventDefault();
+    this.route.navigate(e.currentTarget.getAttribute('href'), {trigger:true, replace: true});
+    return false;
   }
   submit(e){
     e.preventDefault();
@@ -24,27 +34,25 @@ export default class Home extends View {
     const account = new Account({name: accountName});
     account.save();
     this.accounts.add(account);
-    console.log('savibng:', account);
     return false;
 
   }
   initialize() {
-
+    this.$el.empty();
     this.accounts = new Accounts();
     this.listenTo(this.accounts, 'reset', this.renderAccounts);
-    this.accounts.on('change', this.renderAccounts, this);
+    this.accounts.on('add', this.renderAccounts, this);
     this.accounts.fetch();
     this.render();
     this.listView = ListAccountView(this.$el);
   }
   renderAccounts(){
-  /*  const node = new ListAccountView(this.accounts);
-    this.$el.append(createRootNode(node));*/
     this.listView(this.accounts);
   }
   render() {
     const node =  HomeView();
     this.$el.append(createRootNode(node));
+    return this;
 
   }
 }
