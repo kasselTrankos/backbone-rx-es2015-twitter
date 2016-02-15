@@ -23,36 +23,22 @@ export default class List extends View{
     };
   }
   observables(){
-    const Route = this.route;
     this.RxObservable = true;
-    const a = $('.pagination');
-    console.log(this.aClick);
+    const Route = this.route;
+    const pagination = $('.pagination');
     var source = Rx.Observable.fromEventPattern(
       function add (h) {
-        a.on('click', 'a', h);
-        //j = h;
+        pagination.on('click', 'a', h);
       },
       function remove (h) {
-        a.off('click', 'a', h);
+        pagination.off('click', 'a', h);
       }
     ).do((e)=>{e.preventDefault();})
     .pluck('target', 'href')
     .subscribe((href)=>{
-      console.log(href, ' class');
       Route.navigate(`/${_.takeRight(href.split('/'), 2).join('/')}`, {trigger:true});
       return false;
     });
-
-
-
-    /*const pagination = Rx.Observable.fromEvent(a, 'click', false)
-      .do((e)=>{e.preventDefault();})
-      .pluck('target', 'href')
-      .subscribe((href)=>{
-        console.log(href, ' class');
-        Route.navigate(`/${_.takeRight(href.split('/'), 2).join('/')}`, {trigger:true});
-
-      });*/
   }
   tagName(){
     return 'div';
@@ -62,22 +48,16 @@ export default class List extends View{
   }
   ///used by events in backbone
   gotoPage(e){
-    console.log(  document.querySelectorAll('.pagination a'), 'p0pp0');
     /*e.preventDefault();
     this.route.navigate(e.currentTarget.getAttribute('href'), {trigger:true});
-
     return false;*/
   }
   initialize(){
-
   }
   renderPagesTweets(size, currpage=1){
     this.listPages(size, currpage);
-    if(!this.RxObservable)
-      this.observables();
-
+    if(!this.RxObservable)this.observables();
   }
   renderListTweets(){
-
   }
 }

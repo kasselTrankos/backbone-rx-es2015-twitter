@@ -61,7 +61,6 @@ const Pages = (size, pagesShown=6)=>
 
 
 const getPages =(size, page=1, pagesShown=6)=>{
-  console.log(size);
   let buttonFirstPAge = getButtonFirstPage(size, page, pagesShown);
   let buttonPrevPage = getButtonPrevPage(size, page, pagesShown);
   let buttonLastPage = getButtonLastPage(size, page, pagesShown);
