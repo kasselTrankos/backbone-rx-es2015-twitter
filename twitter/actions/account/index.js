@@ -1,4 +1,4 @@
-import {connect, disconnect, TwitterAccountMode ,
+import {connect, disconnect, TwitterAccountMode, ExitsAccount,
   SaveNewAccount,  GetAllAccounts, CollectionExists
   } from './../../db';
 import Q from 'q';
@@ -6,7 +6,12 @@ export const post = (req, params)=> {
   connect();
   const {name} = req.body;
   console.log(name, ' with is');
-  return SaveNewAccount(name)
+  return ExitsAccount(name)
+    .then((exists)=>{
+      console.log(exists, ' ON SAE');
+      if(exists) return exists;
+      else return SaveNewAccount(name);
+    })
     .then((doc)=>{
       return GetAllAccounts();
     })

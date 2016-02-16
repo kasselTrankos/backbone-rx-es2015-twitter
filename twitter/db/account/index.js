@@ -1,5 +1,6 @@
 import Q from 'q';
 import {TwitterAccountModel} from './../index';
+
 export const SaveNewAccount = (accountName)=>{
   let deferred = Q.defer();
   const Account = new TwitterAccountModel({name: accountName});
@@ -38,13 +39,15 @@ export const GetIdFromAccount = (accountName)=>{
 }
 export const ExitsAccount=(accountName)=>{
   let deferred = Q.defer();
-  TwitterAccountModel.findOne({name: accountName}, '',(err, doc)=>{
-    if(!err)  {
-      deferred.resolve(doc);
-    }else{
-      console.log('ERR en querys.ExistsTweet: ',err);
-      deferred.reject(err);
-    }
+  TwitterAccountModel.findOne({name: accountName}, '',
+    (err, doc)=>{
+      if(!err)  {
+        console.log('doc is exits', doc);
+        deferred.resolve(doc);
+      }else{
+        console.log('ERR en querys.ExistsTweet: ',err);
+        deferred.reject(err);
+      }
   });
   return deferred.promise;
 }
