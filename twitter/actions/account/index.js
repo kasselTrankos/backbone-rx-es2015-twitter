@@ -8,7 +8,6 @@ export const post = (req, params)=> {
   console.log(name, ' with is');
   return ExitsAccount(name)
     .then((exists)=>{
-      console.log(exists, ' ON SAE');
       if(exists) return exists;
       else return SaveNewAccount(name);
     })

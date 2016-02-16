@@ -1,10 +1,12 @@
 import {View} from 'backbone';
 import $ from 'jquery';
+import {exists} from './../util/vera';
 import {HomeView, ListAccountView} from './tpl';
 import Accounts from './../collections/Accounts';
 import Account from './../models/Account';
 import createRootNode from 'virtual-dom/create-element';
 import Rx from 'rx';
+import _ from 'lodash';
 
 export default class Home extends View {
   constructor(route){
@@ -49,25 +51,30 @@ export default class Home extends View {
   }
   renderAccounts(){
     this.listView(this.accounts);
-  }
-  render() {
-    const node =  HomeView(this.$el);
-    node();
-    const el = this;
-    this.$el.append(createRootNode(node));
     const input = document.getElementById('twitterAccount');
+    const accounts = this.accounts.models;
     Rx.Observable.fromEvent(input, 'keyup')
     .map((e)=>e.currentTarget.value)
-    .map((input)=>/^@?([a-zA-Z0-9_]){1,15}$/.test(input))
+    .map((input)=>
+      (/^@?([a-zA-Z0-9_]){1,15}$/.test(input) &&
+      !exists(accounts, (o)=>(o.get('name')===input))))
     .distinctUntilChanged()
     .subscribe(
       (result)=>{
-        node(!result);
+        this.node(!result);
       },
       (err)=>{
-        logError(err);
+        console.log(err, ' popque eoeoeoeoeoeoeoe');
       }
     );
+  }
+  render() {
+    this.node =  HomeView(this.$el);
+    this.node();
+    const el = this;
+    this.$el.append(createRootNode(this.node));
+
+
     return this;
   }
 }

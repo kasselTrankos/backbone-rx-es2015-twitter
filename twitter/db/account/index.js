@@ -41,8 +41,7 @@ export const ExitsAccount=(accountName)=>{
   let deferred = Q.defer();
   TwitterAccountModel.findOne({name: accountName}, '',
     (err, doc)=>{
-      if(!err)  {
-        console.log('doc is exits', doc);
+      if(!err){
         deferred.resolve(doc);
       }else{
         console.log('ERR en querys.ExistsTweet: ',err);
