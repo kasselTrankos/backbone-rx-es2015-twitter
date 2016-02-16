@@ -61,6 +61,7 @@ export default class Home extends View {
     .distinctUntilChanged()
     .subscribe(
       (result)=>{
+        
         this.node(!result);
       },
       (err)=>{

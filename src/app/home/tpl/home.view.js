@@ -10,8 +10,13 @@ const HomeView = (el)=>{
   el.append(node);
   return (err)=>{
     prevContent = content;
+    let propButton ={
+      type:'submit',
+      className:'btn btn-default'
+    };
     let classFormGroup = 'form-group';
     if(err) classFormGroup+=' has-error';
+    if(err) propButton.disabled = 'disabled';
     content = h('form', {method: 'POST', id:'accountSave'}, [
       h("h3", {'className': 'blue'}, ['Añade cuenta de twitter']),
       //{ render: TodoList, data: state.items },
@@ -24,10 +29,7 @@ const HomeView = (el)=>{
           placeholder:'Twiitter account'
         }),
       ]),
-      h("button",{
-        type:'submit',
-        className:'btn btn-default'
-      },['Guardar'])
+      h("button", propButton, ['Guardar'])
     ]);
     let delta = diff(prevContent, content);
     node = patch(node, delta);
