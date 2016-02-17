@@ -20,7 +20,6 @@ export default class Home extends View {
     return '#wrapper';
   }
   events(){
-
     return {
       'click #accountSave button': 'submit',
       'click a.goto-account': 'gotoAccount'
@@ -38,7 +37,6 @@ export default class Home extends View {
     account.save();
     this.accounts.add(account);
     return false;
-
   }
   initialize() {
     this.$el.empty();
@@ -61,7 +59,6 @@ export default class Home extends View {
     .distinctUntilChanged()
     .subscribe(
       (result)=>{
-        
         this.node(!result);
       },
       (err)=>{
@@ -74,8 +71,6 @@ export default class Home extends View {
     this.node();
     const el = this;
     this.$el.append(createRootNode(this.node));
-
-
     return this;
   }
 }
