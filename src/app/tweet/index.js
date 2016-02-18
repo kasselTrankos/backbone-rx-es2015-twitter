@@ -4,6 +4,7 @@ import createRootNode from 'virtual-dom/create-element';
 import List from './views/List';
 import Pages from './views/Pages';
 import Tweets from './../collections/Tweets';
+import io from 'socket.io-client/socket.io';
 
 export default class AccountView extends View{
   constructor(route, account, page=1){
@@ -18,7 +19,27 @@ export default class AccountView extends View{
 
     this.list = new List({route: route, account:this.account, page:1, tweetsPerPage:6});
     this.pagination = new Pages({route: route, account:this.account, pagesShown:7});
+    socket();
+  }
+  socket(){
+    const server = {
+      connections: [],
+      path:'/ws/twitter',
+      host: 'localhost',
+      port: '3001'
+    };
+    const socket= {
+      path: `${server.socket.path}`,
+      uri: `http://${server.host}:${server.port}`
+    }
+    const uri = `http://${server.host}:${server.port}/${server.service}`;
+    this.connections.push(account);
+    const socketConnect = io(`${socket.uri}/${this.account}`,
+      { path: socket.path, transports: ['polling']});
+    socketConnect.on('tweet', (data) => {
+      console.log(callback, data, ' tweet');
 
+    });
   }
   tagName(){
     return 'div';

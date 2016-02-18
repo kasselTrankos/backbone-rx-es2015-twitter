@@ -5,7 +5,6 @@ import Q from 'q';
 export const post = (req, params)=> {
   connect();
   const {name} = req.body;
-  console.log(name, ' with is');
   return ExitsAccount(name)
     .then((exists)=>{
       if(exists) return exists;

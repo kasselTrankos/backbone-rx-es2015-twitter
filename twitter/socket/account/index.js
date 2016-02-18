@@ -24,7 +24,7 @@ const Streaming = (serverSocket, _account)=>{
         .then((doc)=>{
           close();
           console.log(' joder tengo un tweet', doc.text);
-          io.emit('tweet', doc);
+          io.emit('tweet', {account: account, tweet:doc});
         })
         .catch((err)=>{close();
           console.log('necesito trabajar los errores', err);

@@ -45,7 +45,9 @@ export const connect = ()=> {
       }
   };
   if (Mongoose.connection.readyState === 0)
-      return Mongoose.connect(urlDatabase || process.env.MONGODB, mongoOptions, function(err){
+      return Mongoose
+      .connect(urlDatabase || process.env.MONGODB, mongoOptions,
+        (err)=>{
         return (!err);
       });
 }
