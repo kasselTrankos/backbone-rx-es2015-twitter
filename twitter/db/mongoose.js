@@ -39,19 +39,15 @@ export const connect = ()=> {
       db: {safe: true},
       server: {
           socketOptions: {
-              keepAlive: 1
-          }
-      },
-      replset: {
-          rs_name: 'myReplSet',
-          socketOptions: {
-              keepAlive: 1
+              keepAlive: 1,
+              connectTimeoutMS: 30000
           }
       }
   };
-  return Mongoose.connect(urlDatabase || process.env.MONGODB, mongoOptions, function(err){
-    return (!err);
-  });
+  if (Mongoose.connection.readyState === 0)
+      return Mongoose.connect(urlDatabase || process.env.MONGODB, mongoOptions, function(err){
+        return (!err);
+      });
 }
 export const TwitterToken = new Schema({
   access_token: {type: String, default: '', index:true},
