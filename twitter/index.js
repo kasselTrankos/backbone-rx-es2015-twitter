@@ -28,8 +28,6 @@ app.post('/account', (req, res)=>{
   middleware(req, res, post);
 });
 app.get('/tweet/*', (req, res)=>{
-  console.log('pero que pasa??===!');
-  //const [nameAccount] = req.params;
   stream(req.params[0]);
   middleware(req, res, get);
 });

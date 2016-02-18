@@ -19,25 +19,25 @@ export default class AccountView extends View{
 
     this.list = new List({route: route, account:this.account, page:1, tweetsPerPage:6});
     this.pagination = new Pages({route: route, account:this.account, pagesShown:7});
-    socket();
+    this.socket();
   }
   socket(){
     const server = {
       connections: [],
-      path:'/ws/twitter',
+      path:'/apitwitter/twitter',
       host: 'localhost',
-      port: '3001'
+      port: '3000'
     };
     const socket= {
-      path: `${server.socket.path}`,
+      path: `${server.path}`,
       uri: `http://${server.host}:${server.port}`
     }
     const uri = `http://${server.host}:${server.port}/${server.service}`;
-    this.connections.push(account);
+    // this.connections.push(account);
     const socketConnect = io(`${socket.uri}/${this.account}`,
       { path: socket.path, transports: ['polling']});
     socketConnect.on('tweet', (data) => {
-      console.log(callback, data, ' tweet');
+      console.log(data, ' tweet');
 
     });
   }
