@@ -51,18 +51,79 @@ export const connect = ()=> {
         return (!err);
       });
 }
+export const TwitterList = new Shema({
+  account: {type: String, index: true},
+  account_id: {type: String},
+  "previous_cursor": {type: Number},
+  "lists": [
+    {
+      "name": {type: String},
+      "slug": {type: String},
+      "uri": {type: String},
+      "id_str": {type: String},
+      "subscriber_count": {type: Number},
+      "member_count": {type: Number},
+      "mode": {type: String},
+      "id": {type: Number},
+      "full_name": {type: String},
+      "description": {type: String},
+      "user": {
+        "profile_sidebar_border_color": {type: String},
+        "profile_background_tile": {type: Boolean},
+        "profile_sidebar_fill_color": {type: String},
+        "name": {type: String},
+        "created_at": {type: String},
+        "location": {type: String},
+        "profile_image_url": {type: String},
+        "follow_request_sent": {type: Boolean},
+        "profile_link_color": {type: String},
+        "is_translator": {type: Boolean},
+        "id_str": {type: String},
+        "default_profile": {type: Boolean},
+        "favourites_count": {type: Number},
+        "contributors_enabled": {type: Boolean},
+        "url": {type: String},
+        "id": {type: Number},
+        "profile_image_url_https": {type: String},
+        "utc_offset": {type: Number},
+        "profile_use_background_image": {type: Boolean},
+        "listed_count": {type: Number},
+        "lang": {type: String},
+        "followers_count": {type: Number},
+        "profile_text_color": {type: String},
+        "protected": {type: Boolean},
+        "profile_background_color": {type: String},
+        "verified": {type: Boolean},
+        "time_zone": {type: String},
+        "profile_background_image_url_https": {type: String},
+        "description": {type: String},
+        "notifications": {type: Boolean},
+        "geo_enabled": {type: Boolean},
+        "statuses_count": {type: Number},
+        "default_profile_image": {type: Boolean},
+        "friends_count": {type: Number},
+        "profile_background_image_url": {type: String},
+        "following": {type: Boolean},
+        "screen_name": {type: String},
+        "show_all_inline_media": {type: Boolean}
+      },
+      "following": {type: String}
+});
+export const TwitterListModel = conn.model('TwiiterList', TwitterList);
+
 export const TwitterToken = new Schema({
   access_token: {type: String, default: '', index:true},
   date: {type: Date, default: Date.now}
 });
 export const TwitterTokenModel = conn.model('TwitterToken', TwitterToken);
-
 export const TwitterAccount = new Schema({
   name: {type: String},
   date: {type: Date, default: Date.now}
 });
-export const TwitterAccountModel = conn.model('TwitterAccount', TwitterAccount);
 
+
+
+export const TwitterAccountModel = conn.model('TwitterAccount', TwitterAccount);
 export const TwitterTweet = new Schema({
   account: {type: String, index: true},
   account_id: {type: String},
