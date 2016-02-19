@@ -43,13 +43,13 @@ export default class AccountView extends View{
     //this.socket();
     let that = this;
     tweetPublisher.subscribe((data)=>{
-
-      console.log(data.account, data.tweet, this.account, data);
+      console.log(that.account, ' tweet', data.account);
       if(that.account===data.account) {
-        that.tweets.add(data);
+        console.log(this.tweets.size());
+        that.tweets.unshift(data);
+        console.log(this.tweets.size());
         that.renderListTweetsPagination();
       }
-      console.log(tweet, 'subscriber');
     });
   }
 
@@ -79,6 +79,7 @@ export default class AccountView extends View{
     this.renderListTweetsPagination();
   }
   renderListTweetsPagination(){
+    console.log('updatte', this.page, this.tweets.size());
     this.list.renderListTweets(this.tweets, this.page);
     this.pagination.renderPagesTweets(this.tweets.size(), this.page);
   }
