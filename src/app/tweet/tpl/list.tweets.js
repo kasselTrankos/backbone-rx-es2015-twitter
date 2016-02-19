@@ -19,7 +19,7 @@ const ListTweetsView = (el)=>{
   const htmlTweet = (tweet)=>{
     return h('div', {className: 'tweet-content box-shadow--2dp'}, [
       h('img', {
-        className: 'img',
+        className: 'img-rounded',
         src: tweet.get('user').profile_image_url
       }),
       h('p', {

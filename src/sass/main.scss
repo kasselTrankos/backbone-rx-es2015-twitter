@@ -4,15 +4,16 @@
   .tweet-content{
     display: block;
     margin-bottom: 8px;
+    padding: 14px 8px;
     img{
       display: inline-block;
-
-      padding: 8px;
+      vertical-align: top;
     }
     p{
       display: inline-block;
+      vertical-align: middle;
       width: calc(100% - 64px);
-      padding: 20px 8px 0;
+      padding: 0px 8px 0;
     }
   }
 
