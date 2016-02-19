@@ -76,5 +76,14 @@ describe('Pagination', function () {
     done();
 
   });
+  it('expect to be 174 pages when size is 1196', (done)=>{
+
+    size = 1214;
+    showPages= 7;
+    assert.equal(174, getTotalPages(size, showPages));
+    done();
+
+  });
+
 
 });
