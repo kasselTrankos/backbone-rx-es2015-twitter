@@ -6,7 +6,6 @@ import Q from 'q';
 export const get = (req, params)=>{
   ///activate stream, a ver como va!!!
   const [name] = params;
-  console.log(name, ' CCOUNT NAMO');
   connect();
   return Timeline(name)
   .then((docs)=>{

@@ -5,6 +5,7 @@ import List from './views/List';
 import Pages from './views/Pages';
 import Tweets from './../collections/Tweets';
 import io from 'socket.io-client/socket.io';
+import Rx from 'rx';
 
 export default class AccountView extends View{
   constructor(route, account, page=1){
@@ -16,31 +17,40 @@ export default class AccountView extends View{
     this.tweets.fetch();
     this.$el.empty();
     this.render();
+    const tweetPublisher = Rx.Observable.create((observer)=>{
+      const server = {
+        connections: [],
+        path:'/apitwitter/twitter',
+        host: 'localhost',
+        port: '3000'
+      };
+      const socket= {
+        path: `${server.path}`,
+        uri: `http://${server.host}:${server.port}`
+      }
+      const uri = `http://${server.host}:${server.port}/${server.service}`;
+      // this.connections.push(account);
+      const socketConnect = io(`${socket.uri}/${this.account}`,
+        { path: socket.path, transports: ['polling']});
+      socketConnect.on('tweet', (data) => {
 
+        observer.next(data);
+      });
+    });
     this.list = new List({route: route, account:this.account, page:1, tweetsPerPage:6});
     this.pagination = new Pages({route: route, account:this.account, pagesShown:7});
-    this.socket();
-  }
-  socket(){
-    const server = {
-      connections: [],
-      path:'/apitwitter/twitter',
-      host: 'localhost',
-      port: '3000'
-    };
-    const socket= {
-      path: `${server.path}`,
-      uri: `http://${server.host}:${server.port}`
-    }
-    const uri = `http://${server.host}:${server.port}/${server.service}`;
-    // this.connections.push(account);
-    const socketConnect = io(`${socket.uri}/${this.account}`,
-      { path: socket.path, transports: ['polling']});
-    socketConnect.on('tweet', (data) => {
-      console.log(data, ' tweet');
 
+    //this.socket();
+    let that = this;
+    tweetPublisher.subscribe((data)=>{
+      if(that.account===data.account) {
+        that.tweets.add(data.tweet);
+        that.renderListTweetsPagination();
+      }
+      console.log(tweet, 'subscriber');
     });
   }
+
   tagName(){
     return 'div';
   }

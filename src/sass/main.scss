@@ -9,11 +9,34 @@
       display: inline-block;
       vertical-align: top;
     }
-    p{
+    .tweet{
       display: inline-block;
       vertical-align: middle;
       width: calc(100% - 64px);
       padding: 0px 8px 0;
+      .tweet-user{
+        text-decoration: none;
+        color: #000;
+        .user-name{
+          &:hover{
+            text-decoration: underline;
+          }
+        }
+        .screen-user-name{
+          color:#888;
+          text-decoration: none;
+          font-size: 11px;
+          padding-left: 10px;
+
+        }
+      }
+
+      .tweet-text{
+        p{
+
+        }
+      }
+
     }
   }
 

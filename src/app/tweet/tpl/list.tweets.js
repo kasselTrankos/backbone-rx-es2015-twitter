@@ -22,9 +22,24 @@ const ListTweetsView = (el)=>{
         className: 'img-rounded',
         src: tweet.get('user').profile_image_url
       }),
-      h('p', {
-        className:'tweet'
-      }, [convertHTML(TwitterText(tweet.get('text')))])
+      h('div', {className:'tweet'}, [
+        h('a', {
+          className:'tweet-user',
+          href: `http://twitter.com/${tweet.get('user').screen_name}`,
+          target:'_blank'
+        }, [
+          h('span', {className:'user-name'}, [tweet.get('user').name]),
+          h('span', {className:'screen-user-name'}, [`@${tweet.get('user').screen_name}`])
+        ]),
+
+        h('div', {className:'tweet-text'}, [
+          h('p', {
+            className:''
+          }, [convertHTML(TwitterText(tweet.get('text')))])
+        ])
+
+      ])
+
     ]);
   }
   return (tweets={}, page=1, tweetsPerPage=10)=>{

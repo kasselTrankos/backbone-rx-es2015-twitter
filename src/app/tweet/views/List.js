@@ -10,6 +10,7 @@ export default class List extends View{
     this.page = options.page;
     this.tweetsPerPage = options.tweetsPerPage;
   }
+  
   tagName(){
     return 'div';
   }
@@ -20,11 +21,11 @@ export default class List extends View{
   initialize(){
     this.listView = ListTweetsView(this.$el);
   }
-  
+
   render(){
 
   }
-  renderListTweets(tweets,page){
+  renderListTweets(tweets, page){
     this.listView(tweets, page, this.tweetsPerPage);
   }
 }

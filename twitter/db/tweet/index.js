@@ -4,7 +4,7 @@ export const findAllTweetsByAccount = (account, sort={created_at:-1})=>{
   let deferred = Q.defer();
   TwitterTweetModel.find({
     account:account
-  }, 'text user.profile_image_url').sort(sort).exec((err, docs)=>{
+  }, 'text user.profile_image_url user.name user.url user.screen_name').sort(sort).exec((err, docs)=>{
     if(!err){
       deferred.resolve(docs);
     }else{
@@ -52,7 +52,6 @@ export const ExistsTweet = (tweet)=>{
   let deferred = Q.defer();
   TwitterTweetModel.findOne({id: tweet.id}, '',(err, doc)=>{
     if(!err)  {
-      console.log(doc, ' existe???');
       if(doc===null) deferred.resolve(tweet);
       else deferred.resolve(false);
     }else{
