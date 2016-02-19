@@ -16,6 +16,17 @@ const ListTweetsView = (el)=>{
   content =  h('p', {className:'text-info'}, ['cargando Datos de tus cuentas']);
   let node = createElement(content);
   el.append(node);
+  const htmlTweet = (tweet)=>{
+    return h('div', {className: 'tweet-content box-shadow--2dp'}, [
+      h('img', {
+        className: 'img',
+        src: tweet.get('user').profile_image_url
+      }),
+      h('p', {
+        className:'tweet'
+      }, [convertHTML(TwitterText(tweet.get('text')))])
+    ]);
+  }
   return (tweets={}, page=1, tweetsPerPage=10)=>{
     prevContent = content;
     start = (page - 1) * tweetsPerPage;
@@ -23,9 +34,7 @@ const ListTweetsView = (el)=>{
     content = h('div', {className: 'list-accounts'}, [
       (tweets.size()===0)
         ? h('p', {className:'text-info'}, ['no hay ninguna cuenta introduce una please!!'])
-        : _.map(_.slice(tweets.models, start, end), (el)=>h('p', {
-          className:'tweet box-shadow--2dp'
-        }, [convertHTML(TwitterText(el.get('text')))]))
+        : _.map(_.slice(tweets.models, start, end), (el)=>htmlTweet(el))
     ]);
     let delta = diff(prevContent, content);
     node = patch(node, delta);

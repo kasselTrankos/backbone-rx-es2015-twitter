@@ -1,9 +1,21 @@
 @import "bootstrap";
 @import "box-shadow";
 #wrapper{
-  .tweet{
-    padding: 12px 8px;
+  .tweet-content{
+    display: block;
+    margin-bottom: 8px;
+    img{
+      display: inline-block;
+
+      padding: 8px;
+    }
+    p{
+      display: inline-block;
+      width: calc(100% - 64px);
+      padding: 20px 8px 0;
+    }
   }
+
   .list-accounts{
     p{
       font-size: 11px;
