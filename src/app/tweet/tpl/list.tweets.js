@@ -17,7 +17,7 @@ const ListTweetsView = (el)=>{
   let node = createElement(content);
   el.append(node);
   const htmlTweet = (tweet)=>{
-    return h('div', {className: 'tweet-content box-shadow--2dp'}, [
+    return h('div', {className: 'tweet-content box-shadow--2dp fadeInUp'}, [
       h('img', {
         className: 'img-rounded',
         src: tweet.get('user').profile_image_url

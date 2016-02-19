@@ -70,7 +70,7 @@ export const TwitterTweet = new Schema({
   created_at: {type: Date},
   id: {type: Number},
   id_str: {type: String},
-  coordinates: {type: String},
+  coordinates: {type: Object},
   favorited: {type: Boolean},
   truncated: {type: Boolean},
   entities: {

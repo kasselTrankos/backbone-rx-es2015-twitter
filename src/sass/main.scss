@@ -1,7 +1,9 @@
 @import "bootstrap";
 @import "box-shadow";
+@import "animate";
 #wrapper{
   .tweet-content{
+    @include animation(1s, 0.3s, 1, fadeIn, 'linear');
     display: block;
     margin-bottom: 8px;
     padding: 14px 8px;

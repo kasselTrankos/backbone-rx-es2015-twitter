@@ -33,7 +33,7 @@ export default class AccountView extends View{
       const socketConnect = io(`${socket.uri}/${this.account}`,
         { path: socket.path, transports: ['polling']});
       socketConnect.on('tweet', (data) => {
-
+        console.log('print one');
         observer.next(data);
       });
     });
