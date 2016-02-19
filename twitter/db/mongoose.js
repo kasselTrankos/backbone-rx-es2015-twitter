@@ -97,7 +97,7 @@ export const TwitterTweet = new Schema({
   place: {type: Object},
   user: {
     profile_sidebar_fill_color: {type: String},
-      profile_sidebar_border_color: {type: String},
+    profile_sidebar_border_color: {type: String},
       profile_background_tile: {type: Boolean},
       name: {type: String},
       profile_image_url: {type: String},

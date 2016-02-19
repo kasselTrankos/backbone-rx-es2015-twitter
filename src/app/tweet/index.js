@@ -43,8 +43,10 @@ export default class AccountView extends View{
     //this.socket();
     let that = this;
     tweetPublisher.subscribe((data)=>{
+
+      console.log(data.account, data.tweet, this.account, data);
       if(that.account===data.account) {
-        that.tweets.add(data.tweet);
+        that.tweets.add(data);
         that.renderListTweetsPagination();
       }
       console.log(tweet, 'subscriber');

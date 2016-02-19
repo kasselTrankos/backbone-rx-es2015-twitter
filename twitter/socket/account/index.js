@@ -1,4 +1,4 @@
-import {InsertTweet,GetIdFromAccount, connect, close} from './../../db';
+import {InsertTweet,GetIdFromAccount, connect, disconnect} from './../../db';
 import {isPortOpen} from './../../utils/port';
 import Twit from 'twit';
 import portfinder from 'portfinder';
@@ -22,11 +22,11 @@ const Streaming = (serverSocket, _account)=>{
         GetIdFromAccount(account)
         .then((doc)=>InsertTweet(tweet, account, doc._id))
         .then((doc)=>{
-          close();
+          disconnect();
           console.log(' joder tengo un tweet', doc.text);
           io.emit('tweet', {account: account, tweet:doc});
         })
-        .catch((err)=>{close();
+        .catch((err)=>{disconnect();
           console.log('necesito trabajar los errores', err);
         });
       });
