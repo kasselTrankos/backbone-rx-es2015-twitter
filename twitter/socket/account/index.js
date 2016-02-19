@@ -20,13 +20,14 @@ const Streaming = (serverSocket, _account)=>{
       stream.on('tweet', function(tweet){
         connect();//kjoder etalles molones q trane de cabeza
         GetIdFromAccount(account)
-        .then((doc)=>InsertTweet(tweet, account, doc._id))
+        .then((doc)=>InsertOrUpdateTweet(tweet, account.name, account._id))
         .then((doc)=>{
           disconnect();
           console.log(' joder tengo un tweet', doc.text);
-          io.emit('tweet', {account: account, tweet:doc});
+          io.emit('tweet', doc);
         })
-        .catch((err)=>{disconnect();
+        .catch((err)=>{
+          disconnect();
           console.log('necesito trabajar los errores', err);
         });
       });

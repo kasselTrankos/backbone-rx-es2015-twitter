@@ -12,7 +12,6 @@ export const SaveNewAccount = (accountName)=>{
 }
 export const GetAllAccounts = ()=>{
   let deferred = Q.defer();
-  console.log(' get it');
   TwitterAccountModel.find({}, '', (err, doc)=>{
     if(!err)  {
       deferred.resolve(doc);
@@ -26,7 +25,7 @@ export const GetAllAccounts = ()=>{
 export const GetIdFromAccount = (accountName)=>{
   let deferred = Q.defer();
   TwitterAccountModel.findOne({
-    name:accountName
+    name: accountName
   }, '', (err, doc)=>{
     if(err) {
       console.log('ERROR en querys.GetIdFromAccount:',err, 'account', account);

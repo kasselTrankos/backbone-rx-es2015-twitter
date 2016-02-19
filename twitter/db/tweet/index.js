@@ -84,11 +84,10 @@ export const InsertOrUpdateTweet = (tweet, account, account_id)=>{
   let deferred = Q.defer();
   tweet.account = account;
   tweet.account_id = account_id;
-  console.log(tweet.id_str, ' SAVE');
   TwitterTweetModel.update(
-    {id_str: tweet.id_str},
+    {id: tweet.id},
     { $set: tweet },
-    {upsert: true},
+    {upsert: true, new: true},
     (err, numAffected)=>{
       if(!err){
         deferred.resolve(tweet);
