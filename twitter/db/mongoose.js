@@ -51,12 +51,10 @@ export const connect = ()=> {
         return (!err);
       });
 }
-export const TwitterList = new Shema({
+export const TwitterList = new Schema({
   account: {type: String, index: true},
   account_id: {type: String},
-  "previous_cursor": {type: Number},
-  "lists": [
-    {
+
       "name": {type: String},
       "slug": {type: String},
       "uri": {type: String},

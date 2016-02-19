@@ -32,7 +32,6 @@ export const PushMongoTimelineRest = (tweets, account, account_id)=>{
         callback({status: false, error: err});
         return;
       }
-
       if(i<(tweets.length-1)) updateInsert(tweets[++i], callback);
       else callback({status: true});
     });
