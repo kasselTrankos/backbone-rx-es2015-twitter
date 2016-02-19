@@ -12,8 +12,9 @@ export default class List extends View{
     this.page = options.page;
     this.pagesShown = options.pagesShown;
     this.account = options.account;
+    this.tweetsPerPage = options.tweetsPerPage;
     this.route = options.route;
-    this.listPages = ListPagesView(this.$el, this.account, this.pagesShown);
+    this.listPages = ListPagesView(this.$el, this.account, this.pagesShown, this.tweetsPerPage);
 
   }
   events(){

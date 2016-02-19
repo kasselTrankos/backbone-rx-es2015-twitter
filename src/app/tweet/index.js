@@ -38,7 +38,7 @@ export default class AccountView extends View{
       });
     });
     this.list = new List({route: route, account:this.account, page:1, tweetsPerPage:7});
-    this.pagination = new Pages({route: route, account:this.account, pagesShown:7});
+    this.pagination = new Pages({route: route, account:this.account, pagesShown:7, tweetsPerPage:7});
 
     //this.socket();
     let that = this;
