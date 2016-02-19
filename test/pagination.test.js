@@ -5,7 +5,7 @@ import {getFirstPage, getMiddleFromPagination,
   getTotalPages, isInLastMiddle, Pages,
   getButtonLastPage} from './../src/app/util/Pagination';
 describe('Pagination', function () {
-  let size=561, showPages =7, page = 7
+  let size=561, showPages =7, page = 7, itemsPerPage =7;
   let assert = chai.assert;
   let expect = chai.expect;
   it('assert total pages equal 81', (done)=>{
@@ -14,13 +14,13 @@ describe('Pagination', function () {
   });
   it('expect not in last section of pagination when page is 73', (done)=>{
     page = 73;
-    expect(isInLastMiddle(size, page, showPages)).to.not.be.true;
+    expect(isInLastMiddle(size, page, showPages, itemsPerPage)).to.not.be.true;
     done();
   });
 
   it('expect in last section of pagination when page is 78', (done)=>{
     page = 78;
-    expect(isInLastMiddle(size, page, showPages)).to.be.true;
+    expect(isInLastMiddle(size, page, showPages, itemsPerPage)).to.be.true;
     done();
   });
 
@@ -55,12 +55,12 @@ describe('Pagination', function () {
   it('expect page 80 isLessThanEnd to not be true', (done)=>{
     page  = 80;
     size = 581;
-    expect(isLessThanEnd(size, page, showPages)).to.not.be.true;
+    expect(isLessThanEnd(size, page, showPages, itemsPerPage)).to.not.be.true;
     done();
   });
   it('expect getButtonLastPage length is 0 page is 80', (done)=>{
     page = 80;
-    expect(getButtonLastPage(size, page, showPages)).to.have.length(0);
+    expect(getButtonLastPage(size, page, showPages, itemsPerPage)).to.have.length(0);
     done();
   });
   it('expect first page is 1 when got size 26 an is in page 4', (done)=>{
